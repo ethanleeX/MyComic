@@ -1,0 +1,20 @@
+<resources>
+    <dimen name="margin_micro">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="divider">1px</dimen>
+    <dimen name="list_item_padding">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--elevation-->
+    <dimen name="elevation_dialog">24dp</dimen>
+    <dimen name="elevation_drawer">16dp</dimen>
+    <dimen name="elevation_fab_pressed">12dp</dimen>
+    <dimen name="elevation_sub_menu">9dp</dimen>
+    <dimen name="elevation_card_pressed">8dp</dimen>
+    <dimen name="elevation_menu">8dp</dimen>
+    <dimen name="elevation_fab">6dp</dimen>
+    <dimen name="elevation_appbar">4dp</dimen>
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_switch">1dp</dimen>
+</resources>
