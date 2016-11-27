@@ -5,6 +5,7 @@
     <dimen name="divider">1px</dimen>
     <dimen name="list_item_padding">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="toolbar">48dp</dimen>
 
     <!--elevation-->
     <dimen name="elevation_dialog">24dp</dimen>
@@ -17,4 +18,5 @@
     <dimen name="elevation_appbar">4dp</dimen>
     <dimen name="elevation_card">2dp</dimen>
     <dimen name="elevation_switch">1dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
 </resources>

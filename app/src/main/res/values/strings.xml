@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MyComic</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Z乱码乱码</string>
+    <string name="home">首页</string>
+    <string name="theme">夜间模式</string>
+    <string name="setting">设置</string>
+    <string name="about">关于</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="close_drawer">close drawer</string>
 </resources>

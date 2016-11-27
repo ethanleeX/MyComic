@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="main_tabs">
+        <item>推荐</item>
+        <item>最近更新</item>
+        <item>分类</item>
+        <item>风云榜</item>
+        <item>书架</item>
+    </array>
+</resources>

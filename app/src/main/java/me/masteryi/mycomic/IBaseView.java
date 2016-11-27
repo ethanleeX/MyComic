@@ -7,4 +7,5 @@ package me.masteryi.mycomic;
  */
 
 public interface IBaseView {
+    void setPresenter(BasePresenter presenter);
 }
