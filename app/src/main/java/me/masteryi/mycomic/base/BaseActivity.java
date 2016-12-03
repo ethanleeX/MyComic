@@ -1,4 +1,4 @@
-package me.masteryi.mycomic;
+package me.masteryi.mycomic.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.masteryi.mycomic.R;
 
 /**
  * @author master.yi

@@ -1,6 +1,6 @@
 package me.masteryi.mycomic.main;
 
-import me.masteryi.mycomic.BasePresenter;
+import me.masteryi.mycomic.base.BasePresenter;
 
 /**
  * @author master.yi

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--首页推荐列表-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/margin_medium"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_medium">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lianzai"
+            android:textSize="@dimen/text_size_title" />
+        <TextView
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/change" />
+    </RelativeLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <include
+                layout="@layout/recommend_comic_item"
+                android:id="@+id/item1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <Space
+                android:layout_width="@dimen/margin_small"
+                android:layout_height="wrap_content" />
+            <include
+                layout="@layout/recommend_comic_item"
+                android:id="@+id/item2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <Space
+                android:id="@+id/item3"
+                android:layout_width="@dimen/margin_small"
+                android:layout_height="wrap_content" />
+            <include
+                layout="@layout/recommend_comic_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:orientation="horizontal">
+            <include
+                layout="@layout/recommend_comic_item"
+                android:id="@+id/item4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <Space
+                android:layout_width="@dimen/margin_small"
+                android:layout_height="wrap_content" />
+            <include
+                layout="@layout/recommend_comic_item"
+                android:id="@+id/item5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <Space
+                android:layout_width="@dimen/margin_small"
+                android:layout_height="wrap_content" />
+            <include
+                layout="@layout/recommend_comic_item"
+                android:id="@+id/item6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

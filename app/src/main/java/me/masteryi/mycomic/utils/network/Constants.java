@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.model.network;
+package me.masteryi.mycomic.utils.network;
 
 /**
  * @author master.yi

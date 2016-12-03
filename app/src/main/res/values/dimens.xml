@@ -12,11 +12,13 @@
     <dimen name="elevation_drawer">16dp</dimen>
     <dimen name="elevation_fab_pressed">12dp</dimen>
     <dimen name="elevation_sub_menu">9dp</dimen>
-    <dimen name="elevation_card_pressed">8dp</dimen>
+    <dimen name="elevation_card_touch_raise">6dp</dimen>
     <dimen name="elevation_menu">8dp</dimen>
     <dimen name="elevation_fab">6dp</dimen>
     <dimen name="elevation_appbar">4dp</dimen>
     <dimen name="elevation_card">2dp</dimen>
     <dimen name="elevation_switch">1dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="text_size_title">16sp</dimen>
+    <dimen name="text_size_name">16sp</dimen>
 </resources>

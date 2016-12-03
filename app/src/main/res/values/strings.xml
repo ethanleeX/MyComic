@@ -8,4 +8,6 @@
     <string name="about">关于</string>
     <string name="open_drawer">open drawer</string>
     <string name="close_drawer">close drawer</string>
+    <string name="lianzai">热门连载</string>
+    <string name="change">换一批</string>
 </resources>

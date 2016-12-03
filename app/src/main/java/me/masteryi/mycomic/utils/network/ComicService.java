@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.model.network;
+package me.masteryi.mycomic.utils.network;
 
 import com.orhanobut.logger.Logger;
 import okhttp3.OkHttpClient;
@@ -14,12 +14,12 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  * @blog masteryi.me
  */
 
-public class NetworkService {
+public class ComicService {
     private static ComicApi sInstance;
 
-    public static ComicApi getInstance() {
+    public static ComicApi getApiInstance () {
         if (sInstance == null) {
-            synchronized (NetworkService.class) {
+            synchronized (ComicService.class) {
                 if (sInstance != null) {
                     OkHttpClient client = new OkHttpClient.Builder()
                             .addNetworkInterceptor(chain -> {

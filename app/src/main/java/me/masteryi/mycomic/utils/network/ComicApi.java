@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.model.network;
+package me.masteryi.mycomic.utils.network;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

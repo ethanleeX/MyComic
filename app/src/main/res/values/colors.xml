@@ -8,4 +8,7 @@
     <color name="secondaryText">#757575</color>
     <color name="divider">#BDBDBD</color>
     <color name="white">#FFFFFF</color>
+    <color name="text_dark">#333333</color>
+    <color name="text_medium">#666666</color>
+    <color name="text_light">#999999</color>
 </resources>

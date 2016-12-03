@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import butterknife.BindView;
-import me.masteryi.mycomic.BaseActivity;
+import me.masteryi.mycomic.base.BaseActivity;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.recommend.RecommendFragment;
 
