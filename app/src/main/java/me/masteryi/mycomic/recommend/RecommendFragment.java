@@ -1,13 +1,18 @@
 package me.masteryi.mycomic.recommend;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import butterknife.BindView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.List;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseFragment;
 import me.masteryi.mycomic.beans.RecommendComic;
+import me.masteryi.mycomic.databinding.FragmentRecommendBinding;
 
 /**
  * @author master.yi
@@ -15,10 +20,9 @@ import me.masteryi.mycomic.beans.RecommendComic;
  * @blog masteryi.me
  */
 public class RecommendFragment extends BaseFragment<RecommendPresenter>
-    implements RecommendContract.View<RecommendPresenter> {
-    @BindView(R.id.recommend_recycler_view)
+    implements RecommendContract.View {
+    private FragmentRecommendBinding mBinding;
     RecyclerView mRecommendRecyclerView;
-    @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
     private RecommendAdapter mRecommendAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -33,17 +37,39 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter>
     }
 
     @Override
+    protected View inflateView (LayoutInflater inflater, @Nullable ViewGroup container,
+                                @Nullable Bundle savedInstanceState) {
+        mBinding = FragmentRecommendBinding.inflate(inflater, container, false);
+        return mBinding.getRoot();
+    }
+
+    @Override
     protected void initView () {
+        mRecommendRecyclerView = mBinding.recommendRecyclerView;
+        mSwipeRefreshLayout = mBinding.swipeRefreshLayout;
+
         mRecommendAdapter = new RecommendAdapter(getContext());
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecommendRecyclerView.setAdapter(mRecommendAdapter);
         mRecommendRecyclerView.setLayoutManager(mLayoutManager);
 
-        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(true));//刚进入时刷新
+        //刚进入时刷新
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run () {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+        });
+    }
+
+    @Override
+    protected void initPresenter () {
+        mPresenter = new RecommendPresenter(this);
     }
 
     @Override
     public void loadDataFail (Throwable t) {
+        t.printStackTrace();
         showErrorMsg(t.getMessage());
     }
 

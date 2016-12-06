@@ -1,12 +1,15 @@
 package me.masteryi.mycomic.utils.network;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.orhanobut.logger.Logger;
+import java.io.IOException;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * @author master.yi
@@ -18,26 +21,35 @@ public class ComicService {
     private static ComicApi sInstance;
 
     public static ComicApi getApiInstance () {
-        if (sInstance == null) {
+        if(sInstance == null) {
             synchronized (ComicService.class) {
-                if (sInstance != null) {
-                    OkHttpClient client = new OkHttpClient.Builder()
-                            .addNetworkInterceptor(chain -> {
-                                Request request = chain.request();
-                                Logger.d(request.url().toString());
-                                Response response = chain.proceed(request);
-                                Logger.d(response.code());
-                                Logger.d(response.body().toString());
-                                return response;
-                            })
-                            .build();
+                if(sInstance == null) {
+                    OkHttpClient client = new OkHttpClient.Builder().addNetworkInterceptor(
+                        new Interceptor() {
+                            @Override
+                            public Response intercept (Chain chain) throws IOException {
+                                {
+                                    Request request = chain.request();
+                                    Response response = chain.proceed(request);
+                                    String msg = response.request().method() +
+                                                 " " + response.code() +
+                                                 " " + response.message() +
+                                                 " " + response.request().url();
+                                    Logger.i(msg);
+                                    return response;
+                                }
+                            }
+                        }).build();
 
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(Constants.BASE_URL)
-                            .client(client)
-                            .addConverterFactory(JacksonConverterFactory.create())
-                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                            .build();
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL)
+                                                              .client(client)
+                                                              .addCallAdapterFactory(
+                                                                  RxJava2CallAdapterFactory.create())
+                                                              .addConverterFactory(
+                                                                  ScalarsConverterFactory.create())
+                                                              .addConverterFactory(
+                                                                  JacksonConverterFactory.create())
+                                                              .build();
 
                     sInstance = retrofit.create(ComicApi.class);
                 }

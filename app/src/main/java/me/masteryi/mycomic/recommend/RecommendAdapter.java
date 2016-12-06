@@ -1,20 +1,18 @@
 package me.masteryi.mycomic.recommend;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.BindViews;
-import butterknife.ButterKnife;
-import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
+import me.masteryi.mycomic.BR;
 import me.masteryi.mycomic.R;
-import me.masteryi.mycomic.beans.ComicCover;
 import me.masteryi.mycomic.beans.RecommendComic;
+import me.masteryi.mycomic.databinding.RecommendListItemBinding;
 
 /**
  * @author master.yi
@@ -32,33 +30,22 @@ class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.ItemViewHol
 
     @Override
     public ItemViewHolder onCreateViewHolder (ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext)
-                                  .inflate(R.layout.recommend_list_item, parent, false);
-        return new ItemViewHolder(view);
+        RecommendListItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
+            R.layout.recommend_list_item, parent, false);
+        return new ItemViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder (ItemViewHolder holder, int position) {
-        RecommendComic recommendComic = mRecommendComics.get(position);
-        holder.mChange.setOnClickListener(view -> {
-            //TODO
+        ViewDataBinding binding = holder.getBinding();
+        binding.setVariable(BR.recommendComicList, mRecommendComics.get(position));
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                //TODO
+            }
         });
-
-        holder.mTitle.setText(recommendComic.getTitle());
-
-        List<ComicCover> comicCovers = recommendComic.getComicCovers();
-        for(int i = 0; i < comicCovers.size(); i++) {
-            ComicCover comicCover = comicCovers.get(i);
-            SimpleDraweeView coverView = (SimpleDraweeView) holder.mItemViews[i].findViewById(
-                R.id.cover);
-            TextView nameView = (TextView) holder.mItemViews[i].findViewById(R.id.name);
-            TextView latestChapterView = (TextView) holder.mItemViews[i].findViewById(
-                R.id.latest_chapter);
-
-            coverView.setImageURI(comicCovers.get(i).getCoverImg());
-            nameView.setText(comicCover.getName());
-            latestChapterView.setText(comicCover.getLatestChapter());
-        }
+        binding.executePendingBindings();
     }
 
     @Override
@@ -73,16 +60,15 @@ class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.ItemViewHol
     }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.title)
-        TextView mTitle;
-        @BindView(R.id.change)
-        TextView mChange;
-        @BindViews({R.id.item1, R.id.item2, R.id.item3, R.id.item4, R.id.item5, R.id.item6})
-        View[] mItemViews;
+        private RecommendListItemBinding mBinding;
 
-        ItemViewHolder (View view) {
-            super(view);
-            ButterKnife.bind(this, view);
+        ItemViewHolder (RecommendListItemBinding viewDataBinding) {
+            super(viewDataBinding.getRoot());
+            mBinding = viewDataBinding;
+        }
+
+        RecommendListItemBinding getBinding () {
+            return mBinding;
         }
     }
 }

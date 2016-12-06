@@ -11,9 +11,9 @@ import me.masteryi.mycomic.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RangeFragment extends Fragment {
+public class RankFragment extends Fragment {
 
-    public RangeFragment () {
+    public RankFragment () {
         // Required empty public constructor
     }
 

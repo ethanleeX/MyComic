@@ -10,13 +10,13 @@ import retrofit2.http.GET;
  */
 
 public interface ComicApi {
-    @GET
-    Observable<String> getHome();//首页
+    @GET(".")
+    Observable<String> getHome ();//首页
 
     @GET("comic/quanbu/")
-    Observable<String> getCategory();//分类
+    Observable<String> getCategory ();//分类
 
     @GET("top.html")
-    Observable<String> getTop();//风云榜
+    Observable<String> getTop ();//风云榜
 }
 

@@ -1,6 +1,9 @@
 package me.masteryi.mycomic.recommend;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +38,34 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.View>
         mSubscription.add(mComicApi.getHome()
                                    .subscribeOn(Schedulers.io())
                                    .observeOn(Schedulers.computation())
-                                   .map(this::decoderHtml)
+                                   .map(new Function<String, List<RecommendComic>>() {
+                                       @Override
+                                       public List<RecommendComic> apply (String s)
+                                           throws Exception {
+                                           return decoderHtml(s);
+                                       }
+                                   })
                                    .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(mView::loadDataSuccess, throwable -> {
-                                       mView.loadDataFail(throwable);
-                                       mView.loadDataFinish();
-                                   }, mView::loadDataFinish));
+                                   .subscribe(new Consumer<List<RecommendComic>>() {
+                                       @Override
+                                       public void accept (List<RecommendComic> recommendComics)
+                                           throws Exception {
+                                           mView.loadDataSuccess(recommendComics);
+                                       }
+                                   }, new Consumer<Throwable>() {
+                                       @Override
+                                       public void accept (Throwable throwable) throws Exception {
+                                           {
+                                               mView.loadDataFail(throwable);
+                                               mView.loadDataFinish();
+                                           }
+                                       }
+                                   }, new Action() {
+                                       @Override
+                                       public void run () throws Exception {
+                                           mView.loadDataFinish();
+                                       }
+                                   }));
     }
 
     private List<RecommendComic> decoderHtml (String html) {
@@ -49,14 +74,14 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.View>
         Element lianzai = document.getElementById("main-lianzai");//热门连载
         Element wanjie = document.getElementById("main-wanjie");//经典完结
         Element caise = document.getElementById("main-caise");//彩色
-        Element shangjie = document.getElementById("main-shangjia");//上架
+        Element shangjia = document.getElementById("main-shangjia");//上架
 
         //获得每种类型的推荐数据
         List<RecommendComic> list = new ArrayList<>(4);
         list.add(getRecommendComic(lianzai));
         list.add(getRecommendComic(wanjie));
         list.add(getRecommendComic(caise));
-        list.add(getRecommendComic(shangjie));
+        list.add(getRecommendComic(shangjia));
 
         return list;
     }
@@ -85,7 +110,7 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.View>
      */
     private ComicCover getComicCover (Element element) {
         Element contentElement = element.child(0);//a标签
-        String coverImg = contentElement.child(0).attr("src");
+        String coverImg = contentElement.child(0).attr("data-src");
         String name = contentElement.child(1).text();
         String latestChapter = contentElement.child(2).text();
         String url = contentElement.attr("href");

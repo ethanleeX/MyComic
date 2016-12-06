@@ -6,8 +6,6 @@ package me.masteryi.mycomic.base;
  * @blog masteryi.me
  */
 
-public interface IBaseView<T extends IBasePresenter> {
+public interface IBaseView {
     void showErrorMsg (String msg);
-
-    void setPresenter (T presenter);
 }

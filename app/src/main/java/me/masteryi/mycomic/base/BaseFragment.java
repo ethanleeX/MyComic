@@ -1,13 +1,11 @@
 package me.masteryi.mycomic.base;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import butterknife.ButterKnife;
 import me.masteryi.mycomic.utils.ActivityUtil;
 
 /**
@@ -16,22 +14,21 @@ import me.masteryi.mycomic.utils.ActivityUtil;
  * @blog masteryi.me
  */
 
-public abstract class BaseFragment<T extends IBasePresenter> extends Fragment
-    implements IBaseView<T> {
+public abstract class BaseFragment<T extends IBasePresenter> extends Fragment implements IBaseView {
     protected T mPresenter;
 
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getContentId(), container, false);
+        return inflateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onViewCreated (View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         initView();
+        initPresenter();
         initData();
     }
 
@@ -42,6 +39,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment
 
     abstract protected int getContentId ();
 
+    abstract protected View inflateView (LayoutInflater inflater, @Nullable ViewGroup container,
+                                         @Nullable Bundle savedInstanceState);
+
     protected void initView () {
 
     }
@@ -50,9 +50,8 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment
 
     }
 
-    @Override
-    public void setPresenter (@NonNull T presenter) {
-        mPresenter = presenter;
+    protected void initPresenter () {
+
     }
 
     @Override

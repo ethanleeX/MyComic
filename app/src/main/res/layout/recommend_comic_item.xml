@@ -1,44 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:stateListAnimator="@animator/lift_card"
-    app:cardCornerRadius="@dimen/cardview_default_radius"
-    app:cardElevation="@dimen/cardview_default_elevation"
-    app:contentPaddingBottom="@dimen/margin_micro">
-    <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="comicCover"
+            type="me.masteryi.mycomic.beans.ComicCover" />
+    </data>
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/cover"
-            android:layout_width="wrap_content"
+        android:stateListAnimator="@animator/lift_card"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        app:contentPaddingBottom="@dimen/margin_micro">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small" />
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:paddingLeft="@dimen/margin_micro"
-            android:paddingRight="@dimen/margin_micro"
-            android:textSize="@dimen/text_size_name"
-            tools:text="斗破苍穹" />
-        <TextView
-            android:id="@+id/latest_chapter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:paddingLeft="@dimen/margin_micro"
-            android:paddingRight="@dimen/margin_micro"
-            tools:text="更至：第180话 " />
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <com.facebook.drawee.view.SimpleDraweeView
+                xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{comicCover.coverImg}"
+                fresco:viewAspectRatio="0.7894" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin_micro"
+                android:paddingRight="@dimen/margin_micro"
+                android:textSize="@dimen/text_size_name"
+                tools:text="@{comicCover.name}" />
+            <TextView
+                android:id="@+id/latest_chapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin_micro"
+                android:paddingRight="@dimen/margin_micro"
+                tools:text="@{comicCover.latestChapter}" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>
