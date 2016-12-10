@@ -20,5 +20,4 @@
     <dimen name="elevation_switch">1dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="text_size_title">16sp</dimen>
-    <dimen name="text_size_name">16sp</dimen>
 </resources>

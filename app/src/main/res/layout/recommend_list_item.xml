@@ -50,9 +50,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:comicCover="@{recommendComicList.comicCovers[0]}" />
-                <Space
-                    android:layout_width="@dimen/margin_small"
-                    android:layout_height="wrap_content" />
                 <include
                     layout="@layout/recommend_comic_item"
                     android:id="@+id/item2"
@@ -60,12 +57,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:comicCover="@{recommendComicList.comicCovers[1]}" />
-                <Space
-                    android:id="@+id/item3"
-                    android:layout_width="@dimen/margin_small"
-                    android:layout_height="wrap_content" />
                 <include
                     layout="@layout/recommend_comic_item"
+                    android:id="@+id/item3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -83,9 +77,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:comicCover="@{recommendComicList.comicCovers[3]}" />
-                <Space
-                    android:layout_width="@dimen/margin_small"
-                    android:layout_height="wrap_content" />
                 <include
                     layout="@layout/recommend_comic_item"
                     android:id="@+id/item5"
@@ -93,9 +84,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:comicCover="@{recommendComicList.comicCovers[4]}" />
-                <Space
-                    android:layout_width="@dimen/margin_small"
-                    android:layout_height="wrap_content" />
                 <include
                     layout="@layout/recommend_comic_item"
                     android:id="@+id/item6"
