@@ -1,4 +1,5 @@
 <resources>
+    <!--common dimen-->
     <dimen name="margin_micro">4dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
@@ -6,7 +7,7 @@
     <dimen name="list_item_padding">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="toolbar">48dp</dimen>
-
+    <dimen name="nav_header_height">160dp</dimen>
     <!--elevation-->
     <dimen name="elevation_dialog">24dp</dimen>
     <dimen name="elevation_drawer">16dp</dimen>
@@ -18,6 +19,6 @@
     <dimen name="elevation_appbar">4dp</dimen>
     <dimen name="elevation_card">2dp</dimen>
     <dimen name="elevation_switch">1dp</dimen>
-    <dimen name="nav_header_height">160dp</dimen>
+    <!--customer dimen-->
     <dimen name="text_size_title">16sp</dimen>
 </resources>

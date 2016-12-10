@@ -38,6 +38,7 @@ class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.ItemViewHol
     public void onBindViewHolder (ItemViewHolder holder, int position) {
         ViewDataBinding binding = holder.getBinding();
         binding.setVariable(BR.recommendComicList, mRecommendComics.get(position));
+        binding.setVariable(BR.handler, new ClickHandler(mContext));
         binding.executePendingBindings();
     }
 
@@ -62,12 +63,6 @@ class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.ItemViewHol
 
         RecommendListItemBinding getBinding () {
             return mBinding;
-        }
-    }
-
-    class Handler {
-        public void onItemClick (String url) {
-            // TODO: 2016/12/10
         }
     }
 }
