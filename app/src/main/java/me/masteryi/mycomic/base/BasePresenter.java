@@ -28,7 +28,9 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
 
     @Override
     public void unSubscribe () {
-        mSubscription.clear();
+       if(mSubscription != null){
+           mSubscription.clear();
+       }
     }
 
     public abstract void loadData ();

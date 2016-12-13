@@ -1,7 +1,5 @@
 package me.masteryi.mycomic.beans;
 
-import android.databinding.BindingAdapter;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
@@ -60,8 +58,4 @@ public class ComicCover {
         mUrl = url;
     }
 
-    @BindingAdapter({"app:imageUrl"})
-    public static void loadImage (SimpleDraweeView view, String url) {
-        view.setImageURI(url);
-    }
 }

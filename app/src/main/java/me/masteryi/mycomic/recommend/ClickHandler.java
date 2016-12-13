@@ -1,6 +1,9 @@
 package me.masteryi.mycomic.recommend;
 
 import android.content.Context;
+import android.content.Intent;
+import me.masteryi.mycomic.beans.ComicCover;
+import me.masteryi.mycomic.comicIntroduction.ComicIntroductionActivity;
 
 /**
  * @author master.yi
@@ -15,9 +18,12 @@ public class ClickHandler {
         mContext = context;
     }
 
-    public void onItemClick (String url) {
+    public void onItemClick (ComicCover comicCover) {
         // TODO: 2016/12/10
-        //Intent intent = new Intent();
-        //mContext.startActivity(intent);
+        Intent intent = new Intent(mContext, ComicIntroductionActivity.class);
+        intent.putExtra(ComicIntroductionActivity.URL, comicCover.getUrl());
+        intent.putExtra(ComicIntroductionActivity.NAME, comicCover.getName());
+        intent.putExtra(ComicIntroductionActivity.COVER, comicCover.getCoverImg());
+        mContext.startActivity(intent);
     }
 }
