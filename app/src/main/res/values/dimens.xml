@@ -19,6 +19,10 @@
     <dimen name="elevation_appbar">4dp</dimen>
     <dimen name="elevation_card">2dp</dimen>
     <dimen name="elevation_switch">1dp</dimen>
+    <!--text size-->
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_medium">14sp</dimen>
+    <dimen name="text_large">16sp</dimen>
     <!--customer dimen-->
     <dimen name="text_size_title">16sp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->

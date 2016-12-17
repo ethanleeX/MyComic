@@ -18,13 +18,14 @@
         android:stateListAnimator="@animator/lift_card"
         app:cardCornerRadius="@dimen/cardview_default_radius"
         app:cardElevation="@dimen/cardview_default_elevation"
-        app:cardUseCompatPadding="true"
-        app:contentPaddingBottom="@dimen/margin_micro">
+        app:cardUseCompatPadding="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_micro">
             <com.facebook.drawee.view.SimpleDraweeView
                 xmlns:fresco="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/cover"

@@ -2,6 +2,8 @@ package me.masteryi.mycomic.comicIntroduction;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseActivity;
@@ -16,7 +18,6 @@ public class ComicIntroductionActivity extends BaseActivity<ComicIntroductionPre
 
     private ActivityComicChapterBinding mBinding;
     private IntroductionAdapter mIntroductionAdapter;
-    private LinearLayoutManager mLayoutManager;
     private String mUrl;
     private String mName;
     private String mCover;
@@ -35,10 +36,14 @@ public class ComicIntroductionActivity extends BaseActivity<ComicIntroductionPre
 
     @Override
     protected void initView () {
-        mLayoutManager = new LinearLayoutManager(this);
         mIntroductionAdapter = new IntroductionAdapter(this);
-        mBinding.chapterRecyclerView.setLayoutManager(mLayoutManager);
+        mBinding.chapterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBinding.chapterRecyclerView.setAdapter(mIntroductionAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+            DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
+        mBinding.chapterRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     @Override
