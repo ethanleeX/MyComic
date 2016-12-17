@@ -1,14 +1,20 @@
 package me.masteryi.mycomic.comicIntroduction;
 
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseActivity;
 import me.masteryi.mycomic.beans.ComicIntroductionDetail;
 import me.masteryi.mycomic.databinding.ActivityComicChapterBinding;
+import me.masteryi.mycomic.utils.BlurPostprocessor;
 
 public class ComicIntroductionActivity extends BaseActivity<ComicIntroductionPresenter>
     implements ComicIntroductionContract.IView {
@@ -44,6 +50,20 @@ public class ComicIntroductionActivity extends BaseActivity<ComicIntroductionPre
             DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
         mBinding.chapterRecyclerView.addItemDecoration(dividerItemDecoration);
+
+        //背景图模糊
+        ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(Uri.parse(mCover))
+                                                       .setPostprocessor(new BlurPostprocessor())
+                                                       .build();
+
+        PipelineDraweeController draweeController
+            = (PipelineDraweeController) Fresco.newDraweeControllerBuilder()
+                                               .setImageRequest(imageRequest)
+                                               .setOldController(
+                                                   mBinding.titleImage.getController())
+                                               .build();
+
+        mBinding.titleImage.setController(draweeController);
     }
 
     @Override

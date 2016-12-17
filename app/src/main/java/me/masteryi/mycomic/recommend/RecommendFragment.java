@@ -60,6 +60,13 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter>
                 mSwipeRefreshLayout.setRefreshing(true);
             }
         });
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh () {
+                mPresenter.loadData();
+            }
+        });
     }
 
     @Override
