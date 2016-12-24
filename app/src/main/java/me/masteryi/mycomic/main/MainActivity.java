@@ -10,7 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
 import me.masteryi.mycomic.R;
-import me.masteryi.mycomic.base.BaseActivity;
+import me.masteryi.mycomic.base.BaseToolbarActivity;
 import me.masteryi.mycomic.databinding.ActivityMainBinding;
 
 /**
@@ -19,7 +19,7 @@ import me.masteryi.mycomic.databinding.ActivityMainBinding;
  * @blog masteryi.me
  */
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseToolbarActivity {
     private ActivityMainBinding mBinding;
     private DrawerLayout mDrawerLayout;
 
@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView () {
+        super.initView();
         setupTagLayout();
         setupNavView();
         setupDrawer();

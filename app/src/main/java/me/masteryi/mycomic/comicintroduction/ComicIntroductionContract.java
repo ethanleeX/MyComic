@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.comicIntroduction;
+package me.masteryi.mycomic.comicintroduction;
 
 import me.masteryi.mycomic.base.IBasePresenter;
 import me.masteryi.mycomic.base.IBaseView;

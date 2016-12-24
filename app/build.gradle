@@ -61,6 +61,7 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:support-v4:25.0.1'
-    testCompile 'junit:junit:4.12'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    testCompile 'junit:junit:4.12'
 }

@@ -3,7 +3,7 @@ package me.masteryi.mycomic.recommend;
 import android.content.Context;
 import android.content.Intent;
 import me.masteryi.mycomic.beans.ComicCover;
-import me.masteryi.mycomic.comicIntroduction.ComicIntroductionActivity;
+import me.masteryi.mycomic.comicintroduction.ComicIntroductionActivity;
 
 /**
  * @author master.yi

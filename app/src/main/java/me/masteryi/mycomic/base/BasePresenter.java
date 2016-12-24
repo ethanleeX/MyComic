@@ -23,15 +23,16 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
 
     @Override
     public void onSubscribe () {
-        loadData();
+        initData();
     }
 
     @Override
     public void unSubscribe () {
-       if(mSubscription != null){
-           mSubscription.clear();
-       }
+        if(mSubscription != null) {
+            mSubscription.clear();
+        }
     }
 
-    public abstract void loadData ();
+    public void initData () {
+    }
 }

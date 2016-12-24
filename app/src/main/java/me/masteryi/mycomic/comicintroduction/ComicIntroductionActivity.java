@@ -1,8 +1,9 @@
-package me.masteryi.mycomic.comicIntroduction;
+package me.masteryi.mycomic.comicintroduction;
 
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,12 +12,12 @@ import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import me.masteryi.mycomic.R;
-import me.masteryi.mycomic.base.BaseActivity;
+import me.masteryi.mycomic.base.BaseToolbarActivity;
 import me.masteryi.mycomic.beans.ComicIntroductionDetail;
 import me.masteryi.mycomic.databinding.ActivityComicChapterBinding;
 import me.masteryi.mycomic.utils.BlurPostprocessor;
 
-public class ComicIntroductionActivity extends BaseActivity<ComicIntroductionPresenter>
+public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroductionPresenter>
     implements ComicIntroductionContract.IView {
     public static final String URL = "url";
     public static final String NAME = "name";
@@ -42,6 +43,8 @@ public class ComicIntroductionActivity extends BaseActivity<ComicIntroductionPre
 
     @Override
     protected void initView () {
+        super.initView();
+
         mIntroductionAdapter = new IntroductionAdapter(this);
         mBinding.chapterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBinding.chapterRecyclerView.setAdapter(mIntroductionAdapter);
@@ -64,6 +67,19 @@ public class ComicIntroductionActivity extends BaseActivity<ComicIntroductionPre
                                                .build();
 
         mBinding.titleImage.setController(draweeController);
+
+        mBinding.collapsingToolbar.setTitle(mName);
+        mBinding.appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged (AppBarLayout appBarLayout, int verticalOffset) {
+                //完全展开状态
+                if(verticalOffset == 0) {
+                    mBinding.titleImageSmall.animate().scaleX(1).scaleY(1).setDuration(200).start();
+                } else {
+                    mBinding.titleImageSmall.animate().scaleX(0).scaleY(0).setDuration(200).start();
+                }
+            }
+        });
     }
 
     @Override
@@ -102,6 +118,6 @@ public class ComicIntroductionActivity extends BaseActivity<ComicIntroductionPre
 
     @Override
     public void loadDataFailure (Throwable t) {
-        showErrorMsg(t.getMessage());
+        showErrorMsg(t);
     }
 }

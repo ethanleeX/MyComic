@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.comicIntroduction;
+package me.masteryi.mycomic.comicintroduction;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
@@ -28,7 +28,7 @@ public class ComicIntroductionPresenter extends BasePresenter<ComicIntroductionC
     }
 
     @Override
-    public void loadData () {
+    public void initData () {
     }
 
     @Override

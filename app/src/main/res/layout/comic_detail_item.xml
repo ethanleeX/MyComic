@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="imageUrl"
+            type="String" />
+    </data>
+    <com.facebook.drawee.view.SimpleDraweeView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:imageUrl="@{imageUrl}"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:viewAspectRatio="0.6643" />
+</layout>

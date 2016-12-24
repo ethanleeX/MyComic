@@ -21,8 +21,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{introduction}"
                 android:textColor="@color/textSecondary"
-                android:textSize="14sp"
-                android:visibility="gone" />
+                android:textSize="@dimen/text_medium" />
             <!--收起状态 最多显示两行-->
             <TextView
                 android:id="@+id/text_collapse"
@@ -32,14 +31,14 @@
                 android:maxLines="2"
                 android:text="@{introduction}"
                 android:textColor="@color/textSecondary"
-                android:textSize="14sp"
-                android:visibility="gone" />
+                android:textSize="@dimen/text_medium" />
         </FrameLayout>
         <TextView
             android:id="@+id/collapse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/full_text"
-            android:textColor="@color/textPrimary" />
+            android:textColor="@color/textPrimary"
+            android:visibility="gone" />
     </LinearLayout>
 </layout>

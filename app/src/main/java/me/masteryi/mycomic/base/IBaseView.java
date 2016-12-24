@@ -7,5 +7,5 @@ package me.masteryi.mycomic.base;
  */
 
 public interface IBaseView {
-    void showErrorMsg (String msg);
+    void showErrorMsg (Throwable t);
 }

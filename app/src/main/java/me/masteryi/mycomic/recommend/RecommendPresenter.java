@@ -34,7 +34,7 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.View>
      * @return
      */
     @Override
-    public void loadData () {
+    public void initData () {
         mSubscription.add(mComicApi.getHome()
                                    .subscribeOn(Schedulers.io())
                                    .observeOn(Schedulers.computation())

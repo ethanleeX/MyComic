@@ -21,10 +21,9 @@ import me.masteryi.mycomic.databinding.RecommendListItemBinding;
 
 class RecommendAdapter extends BaseAdapter {
     private List<RecommendComic> mRecommendComics = new ArrayList<>(4);
-    private Context mContext;
 
     RecommendAdapter (Context context) {
-        mContext = context;
+        super(context);
     }
 
     @Override

@@ -33,8 +33,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     }
 
     @Override
-    public void showErrorMsg (String msg) {
-        ActivityUtil.showToast(getContext(), msg);
+    public void showErrorMsg (Throwable t) {
+        t.printStackTrace();
+        ActivityUtil.showToast(getContext(), t.getMessage());
     }
 
     abstract protected int getContentId ();

@@ -3,18 +3,18 @@ package me.masteryi.mycomic.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import me.masteryi.mycomic.utils.ActivityUtil;
 
 /**
  * @author master.yi
- * @date 2016/11/20
+ * @date 2016/12/18
  * @blog masteryi.me
+ *
+ * 没有toolbar的activity
  */
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity
     implements IBaseView {
-    protected Toolbar mToolbar;
     protected T mPresenter;
 
     @Override
@@ -22,7 +22,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
         getExtraData();
         initContentView();
-        initToolbar();
         initView();
         initPresenter();
         initData();
@@ -32,17 +31,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     }
 
-    private void initToolbar () {
-        setToolbar();
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
     abstract protected void initView ();
 
     abstract protected void initContentView ();
-
-    abstract protected void setToolbar ();
 
     protected void initPresenter () {
     }
@@ -50,8 +41,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void initData () {
     }
 
-    public void showErrorMsg (String msg) {
-        ActivityUtil.showToast(this, msg);
+    public void showErrorMsg (Throwable t) {
+        t.printStackTrace();
+        ActivityUtil.showToast(this, t.getMessage());
     }
 
     @Override
@@ -70,3 +62,4 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         }
     }
 }
+

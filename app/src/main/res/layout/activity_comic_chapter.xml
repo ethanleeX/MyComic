@@ -16,7 +16,7 @@
         android:id="@+id/activity_comic_chapter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="me.masteryi.mycomic.comicIntroduction.ComicIntroductionActivity">
+        tools:context="me.masteryi.mycomic.comicintroduction.ComicIntroductionActivity">
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
@@ -25,9 +25,13 @@
             android:fitsSystemWindows="true"
             android:theme="@style/MyAppbarTheme">
             <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/colorPrimary"
+                app:expandedTitleMarginBottom="115dp"
+                app:expandedTitleMarginStart="114dp"
+                app:expandedTitleTextAppearance="@style/ComicChapterTitle"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/title_image"
@@ -46,62 +50,47 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_marginBottom="@dimen/margin_medium"
-                        android:layout_marginLeft="@dimen/margin_small"
+                        android:layout_marginLeft="@dimen/margin_medium"
                         bind:imageUrl="@{cover}"
                         fresco:viewAspectRatio="0.7894" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
+                    <TextView
+                        android:id="@+id/author"
+                        android:layout_alignTop="@+id/title_image_small"
                         android:layout_marginLeft="@dimen/margin_small"
-                        android:layout_marginRight="@dimen/margin_small"
+                        android:layout_marginTop="24dp"
                         android:layout_toRightOf="@+id/title_image_small"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/title"
-                            android:text="@{comicIntroductionDetail.name}"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            tools:text="斗破苍穹"
-                            style="@style/comic_chapter_title" />
-                        <TextView
-                            android:id="@+id/author"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{comicIntroductionDetail.author}"
-                            tools:text="天蚕土豆"
-                            style="@style/comic_chapter_title" />
-                        <TextView
-                            android:id="@+id/type"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{comicIntroductionDetail.type}"
-                            tools:text="武侠格斗"
-                            style="@style/comic_chapter_title" />
-                        <TextView
-                            android:id="@+id/lastUpdateTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{comicIntroductionDetail.lastUpdateTime}"
-                            tools:text="更新于：2016-12-07"
-                            style="@style/comic_chapter_title" />
-                        <TextView
-                            android:id="@+id/read"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_small"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:background="@color/background_gray"
-                            android:padding="@dimen/margin_micro"
-                            android:text="@string/read"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
+                        android:text="@{comicIntroductionDetail.author}"
+                        tools:text="天蚕土豆"
+                        style="@style/comic_chapter_title" />
+                    <TextView
+                        android:id="@+id/type"
+                        android:layout_below="@+id/author"
+                        android:layout_toRightOf="@+id/title_image_small"
+                        android:text="@{comicIntroductionDetail.type}"
+                        tools:text="武侠格斗"
+                        style="@style/comic_chapter_title" />
+                    <TextView
+                        android:id="@+id/update_time"
+                        android:layout_below="@+id/type"
+                        android:layout_toRightOf="@+id/title_image_small"
+                        android:text="@{comicIntroductionDetail.lastUpdateTime}"
+                        tools:text="更新于：2016-12-07"
+                        style="@style/comic_chapter_title" />
+                    <TextView
+                        android:id="@+id/read"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/title_image_small"
+                        android:layout_alignLeft="@+id/author"
+                        android:background="@color/background_gray"
+                        android:padding="@dimen/margin_micro"
+                        android:text="@string/read"
+                        android:textColor="@color/white" />
                 </RelativeLayout>
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/colorPrimary"
                     app:layout_collapseMode="pin" />
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
