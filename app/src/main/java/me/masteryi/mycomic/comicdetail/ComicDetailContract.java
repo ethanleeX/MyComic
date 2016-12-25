@@ -13,7 +13,7 @@ import me.masteryi.mycomic.model.beans.ComicDetail;
 
 public class ComicDetailContract {
     interface IView extends IBaseView {
-        void getComicDetailSuccess (ComicDetail comicDetail);
+        void getComicDetailSuccess (ComicDetail comicDetail, boolean isLoadNext);
 
         void getComicDetailFinish ();
 
@@ -27,7 +27,7 @@ public class ComicDetailContract {
     }
 
     interface IPresenter extends IBasePresenter {
-        void getComicDetail (String comicId, String chapterId);
+        void getComicDetail (String comicId, String chapterId, String title, boolean isLoadNext);
 
         void getNextChapter (String comicId, String chapterId, boolean isNext);
     }

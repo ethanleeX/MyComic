@@ -2,6 +2,7 @@ package me.masteryi.mycomic.comicdetail;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseActivity;
 import me.masteryi.mycomic.databinding.ActivityComicDetailBinding;
@@ -22,14 +23,17 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     public static final String TITLE = "title";
     private ActivityComicDetailBinding mBinding;
     private ComicDetailAdapter mComicDetailAdapter;
+    private LinearLayoutManager mLayoutManager;
     private String mComicId;
-    private String mChapterId;
+    private String mFirstChapterId;
+    private String mLastChapterId;
     private String mTitle;
 
     @Override
     protected void getExtraData () {
         mComicId = getIntent().getStringExtra(COMIC_ID);
-        mChapterId = getIntent().getStringExtra(CHAPTER_ID);
+        mFirstChapterId = getIntent().getStringExtra(CHAPTER_ID);
+        mLastChapterId = getIntent().getStringExtra(CHAPTER_ID);
         mTitle = getIntent().getStringExtra(TITLE);
     }
 
@@ -42,7 +46,27 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     protected void initView () {
         mComicDetailAdapter = new ComicDetailAdapter(this);
         mBinding.comicDetailRecyclerView.setAdapter(mComicDetailAdapter);
-        mBinding.comicDetailRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mLayoutManager = new LinearLayoutManager(this);
+        mBinding.comicDetailRecyclerView.setLayoutManager(mLayoutManager);
+
+        mBinding.comicDetailRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled (RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                //向上拉 并且当前处于第一页 加载上一章
+                if(dy < 0 && mLayoutManager.findFirstCompletelyVisibleItemPosition() == 0) {
+                    mPresenter.getNextChapter(mComicId, mFirstChapterId, false);
+                    showMessage(R.string.load_previous_chapter);
+                }
+                //向下拉 并且处于最后一页 加载下一章
+                if(dy > 0 &&
+                   mLayoutManager.findLastCompletelyVisibleItemPosition() ==
+                   mComicDetailAdapter.getItemCount() - 1) {
+                    mPresenter.getNextChapter(mComicId, mLastChapterId, true);
+                    showMessage(R.string.load_next_chapter);
+                }
+            }
+        });
     }
 
     @Override
@@ -52,13 +76,12 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
 
     @Override
     protected void initData () {
-        //mPresenter.getPageCount(mComicId, mChapterId);
-        mPresenter.getComicDetail(mComicId, mChapterId);
+        mPresenter.getComicDetail(mComicId, mFirstChapterId, mTitle, true);
     }
 
     @Override
-    public void getComicDetailSuccess (ComicDetail comicDetail) {
-        mComicDetailAdapter.updateData(comicDetail);
+    public void getComicDetailSuccess (ComicDetail comicDetail, boolean isLoadNext) {
+        mComicDetailAdapter.updateData(comicDetail, isLoadNext);
     }
 
     @Override
@@ -73,11 +96,24 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
 
     @Override
     public void getNextChapterSuccess (ComicChapter nextChapter, boolean isNext) {
-        mComicDetailAdapter.clearData();
-        mChapterId = isNext ? nextChapter.getNextId() : nextChapter.getPreviousId();
-        //获取下一页数据
-        //mPresenter.getPageCount(mComicId, mChapterId);
-        mPresenter.getComicDetail(mComicId, mChapterId);
+        //加载下一章
+        if(isNext) {
+            if(nextChapter.getNextId().equals("0")) {
+                showMessage(R.string.no_more_chapter);
+                return;
+            }
+            mLastChapterId = nextChapter.getNextId();
+            mTitle = nextChapter.getNextTitle();
+            mPresenter.getComicDetail(mComicId, mLastChapterId, mTitle, true);
+        } else {
+            if(nextChapter.getPreviousId().equals("0")) {
+                showMessage(R.string.no_more_chapter);
+                return;
+            }
+            mFirstChapterId = nextChapter.getPreviousId();
+            mTitle = nextChapter.getPreviousTitle();
+            mPresenter.getComicDetail(mComicId, mFirstChapterId, mTitle, false);
+        }
     }
 
     @Override
@@ -87,6 +123,6 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
 
     @Override
     public void getNextChapterFinish () {
-        //TODO
+        showMessage(R.string.load_chapter_finish);
     }
 }

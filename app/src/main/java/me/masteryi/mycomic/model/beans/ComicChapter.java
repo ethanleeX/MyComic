@@ -1,5 +1,6 @@
 package me.masteryi.mycomic.model.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -7,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @date 2016/12/18
  * @blog masteryi.me
  */
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ComicChapter {
     /**
      * s : 1

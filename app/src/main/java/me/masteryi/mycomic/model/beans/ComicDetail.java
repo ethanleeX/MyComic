@@ -15,6 +15,8 @@ public class ComicDetail {
     private Integer mPageCount;
     @JsonIgnore
     private String[] mImages;//漫画内容
+    @JsonIgnore
+    private String title;
 
     public ComicDetail () {
     }
@@ -38,5 +40,13 @@ public class ComicDetail {
 
     public void setImage (int page, String imgUrl) {
         mImages[page] = imgUrl;
+    }
+
+    public String getTitle () {
+        return title;
+    }
+
+    public void setTitle (String title) {
+        this.title = title;
     }
 }

@@ -5,6 +5,7 @@ import com.orhanobut.logger.Logger;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -30,14 +31,25 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
     }
 
     @Override
-    public void getComicDetail (String comicId, String chapterId) {
+    public void getComicDetail (String comicId, String chapterId, final String title,
+                                final boolean isLoadNext) {
         mSubscription.add(mComicApi.getComicDetail(comicId, chapterId)
                                    .subscribeOn(Schedulers.io())
-                                   .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(new Consumer<String>() {
+                                   .observeOn(Schedulers.computation())
+                                   .map(new Function<String, ComicDetail>() {
                                        @Override
-                                       public void accept (String s) throws Exception {
-                                           mView.getComicDetailSuccess(getComicDetail(s));
+                                       public ComicDetail apply (String s) throws Exception {
+                                           ComicDetail comicDetail = getComicDetail(s);
+                                           comicDetail.setTitle(title);
+                                           return comicDetail;
+                                       }
+                                   })
+                                   .observeOn(AndroidSchedulers.mainThread())
+                                   .subscribe(new Consumer<ComicDetail>() {
+                                       @Override
+                                       public void accept (ComicDetail comicDetail)
+                                           throws Exception {
+                                           mView.getComicDetailSuccess(comicDetail, isLoadNext);
                                        }
                                    }, new Consumer<Throwable>() {
                                        @Override
@@ -54,8 +66,17 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
 
     @Override
     public void getNextChapter (String comicId, String chapterId, final boolean isNext) {
-        mSubscription.add(mComicApi.getNextChapter(comicId, chapterId)
+        mSubscription.add(mComicApi.getNextChapter("jsonp1", comicId, chapterId)
                                    .subscribeOn(Schedulers.io())
+                                   .observeOn(Schedulers.computation())
+                                   .map(new Function<String, ComicChapter>() {
+                                       @Override
+                                       public ComicChapter apply (String s) throws Exception {
+                                           String json = s.substring(7, s.length() - 1);
+                                           ObjectMapper objectMapper = new ObjectMapper();
+                                           return objectMapper.readValue(json, ComicChapter.class);
+                                       }
+                                   })
                                    .observeOn(AndroidSchedulers.mainThread())
                                    .subscribe(new Consumer<ComicChapter>() {
                                        @Override
@@ -111,7 +132,6 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
         Pattern pattern2 = Pattern.compile(p2);
         Matcher matcher2 = pattern2.matcher(text);
         if(matcher2.find()) {
-            Logger.i(matcher2.group(1));
             ObjectMapper mapper = new ObjectMapper();
             comicDetail.setImages(mapper.readValue(matcher2.group(1), String[].class));
         }

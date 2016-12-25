@@ -46,6 +46,14 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         ActivityUtil.showToast(this, t.getMessage());
     }
 
+    protected void showMessage (String message) {
+        ActivityUtil.showToast(this, message);
+    }
+
+    protected void showMessage (int resId) {
+        ActivityUtil.showToast(this, getString(resId));
+    }
+
     @Override
     protected void onResume () {
         super.onResume();

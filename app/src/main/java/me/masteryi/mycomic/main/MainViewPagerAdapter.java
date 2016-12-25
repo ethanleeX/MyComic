@@ -57,9 +57,4 @@ public class MainViewPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle (int position) {
         return mTitles[position];
     }
-
-    //public void addFragment (Fragment fragment, String title) {
-    //    mFragments.add(fragment);
-    //    mTitles.add(title);
-    //}
 }

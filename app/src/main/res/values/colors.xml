@@ -11,6 +11,8 @@
     <color name="text_dark">#333333</color>
     <color name="text_medium">#666666</color>
     <color name="text_light">#999999</color>
+    <color name="transparent">#00000000</color>
+    <color name="mask">#20000000</color>
 
     <color name="background_gray">#888888</color>
 </resources>
