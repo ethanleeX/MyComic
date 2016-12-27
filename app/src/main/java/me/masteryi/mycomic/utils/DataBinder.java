@@ -11,7 +11,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 public class DataBinder {
     @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage (SimpleDraweeView view, String url) {
+    public static void
+    loadImage (SimpleDraweeView view, String url) {
         view.setImageURI(url);
     }
 }

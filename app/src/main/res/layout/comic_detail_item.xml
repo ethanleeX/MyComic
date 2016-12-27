@@ -13,5 +13,7 @@
         android:layout_height="wrap_content"
         app:imageUrl="@{imageUrl}"
         fresco:actualImageScaleType="centerCrop"
+        fresco:backgroundImage="@color/white"
+        fresco:placeholderImage="@drawable/loading"
         fresco:viewAspectRatio="0.6643" />
 </layout>

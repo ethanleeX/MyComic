@@ -5,7 +5,7 @@
         android:id="@+id/activity_comic_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="me.masteryi.mycomic.comicdetail.ComicDetailActivity">
+        tools:context=".ui.comicdetail.ComicDetailActivity">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/comic_detail_recycler_view"
             android:layout_width="match_parent"
@@ -31,7 +31,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_micro"
-                android:text="@string/chapter_index"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_small"
                 tools:text="1/23" />
@@ -40,7 +39,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/text_small"
-                android:text="@string/chapter_index"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_small"
                 tools:text="WIFI" />
@@ -49,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/text_small"
-                android:text="@string/chapter_index"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_small"
                 tools:text="21:03" />

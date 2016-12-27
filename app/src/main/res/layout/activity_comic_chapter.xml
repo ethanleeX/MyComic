@@ -16,7 +16,7 @@
         android:id="@+id/activity_comic_chapter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="me.masteryi.mycomic.comicintroduction.ComicIntroductionActivity">
+        tools:context=".ui.comicintroduction.ComicIntroductionActivity">
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 app:expandedTitleMarginBottom="115dp"
                 app:expandedTitleMarginStart="114dp"
                 app:expandedTitleTextAppearance="@style/ComicChapterTitle"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/title_image"
                     android:layout_width="match_parent"

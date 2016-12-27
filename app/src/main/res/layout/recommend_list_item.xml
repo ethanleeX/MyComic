@@ -10,7 +10,7 @@
             type="RecommendComic" />
         <variable
             name="handler"
-            type="me.masteryi.mycomic.recommend.ClickHandler" />
+            type="me.masteryi.mycomic.ui.recommend.ClickHandler" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

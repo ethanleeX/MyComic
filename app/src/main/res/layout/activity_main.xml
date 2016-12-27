@@ -6,13 +6,13 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="me.masteryi.mycomic.main.MainActivity"
+        tools:context=".ui.main.MainActivity"
         tools:openDrawer="start">
         <android.support.design.widget.CoordinatorLayout
             android:id="@+id/coordinator_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="me.masteryi.mycomic.main.MainActivity">
+            tools:context=".ui.main.MainActivity">
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
