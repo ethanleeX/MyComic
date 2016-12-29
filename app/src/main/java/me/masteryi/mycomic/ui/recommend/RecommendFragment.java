@@ -75,7 +75,7 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter>
     }
 
     @Override
-    public void loadDataFail (Throwable t) {
+    public void loadDataFailure (Throwable t) {
         showErrorMsg(t);
     }
 

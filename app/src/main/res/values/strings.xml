@@ -15,8 +15,8 @@
     <string name="hello_blank_fragment">Z乱码乱码</string>
     <string name="collect">收藏</string>
     <string name="read">开始阅读</string>
-    <string name="full_text">展开</string>
-    <string name="collapse">收起</string>
+    <string name="full_text">点击展开</string>
+    <string name="collapse">点击收起</string>
     <string name="chapter_index">第%1$d话</string>
     <string name="page_index">%1$d/%2$d</string>
     <string name="network_type_wifi">WIFI</string>
@@ -28,4 +28,5 @@
     <string name="load_previous_chapter">正在加载上一话</string>
     <string name="load_chapter_finish">加载完成</string>
     <string name="no_more_chapter">没有更多了</string>
+    <string name="retry">重新加载</string>
 </resources>

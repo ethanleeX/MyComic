@@ -7,6 +7,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
 import com.facebook.imagepipeline.request.ImageRequest;
@@ -28,6 +29,7 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
     private String mUrl;
     private String mName;
     private String mCover;
+    private View mFailView;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -89,6 +91,7 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
 
     @Override
     protected void initData () {
+        mBinding.loading.setVisibility(View.VISIBLE);
         mPresenter.loadData(mUrl);
     }
 
@@ -105,6 +108,9 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
 
     @Override
     public void loadDataSuccess (ComicIntroductionDetail comicIntroductionDetail) {
+        if(mFailView != null) {
+            mFailView.setVisibility(View.GONE);
+        }
         comicIntroductionDetail.setName(mName);
         mBinding.setComicIntroductionDetail(comicIntroductionDetail);
         mIntroductionAdapter.update(comicIntroductionDetail.getIntroduction(),
@@ -113,11 +119,27 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
 
     @Override
     public void loadDataFinish () {
-        // TODO: 2016/12/11
+        mBinding.loading.setVisibility(View.GONE);
     }
 
     @Override
     public void loadDataFailure (Throwable t) {
         showErrorMsg(t);
+        showFailView();
+    }
+
+    private void showFailView () {
+        if(mFailView == null) {
+            mFailView = mBinding.failViewStub.getViewStub().inflate();
+        }
+        mFailView.setVisibility(View.VISIBLE);
+        View retryView = mFailView.findViewById(R.id.retry);
+        retryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                mFailView.setVisibility(View.GONE);
+                initData();
+            }
+        });
     }
 }

@@ -3,7 +3,7 @@ package me.masteryi.mycomic.ui.comicdetail;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import com.orhanobut.logger.Logger;
+import android.view.View;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseActivity;
 import me.masteryi.mycomic.beans.ComicChapter;
@@ -26,6 +26,7 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     private ActivityComicDetailBinding mBinding;
     private ComicDetailAdapter mComicDetailAdapter;
     private LinearLayoutManager mLayoutManager;
+    private View mFailView;
     private String mComicId;
     private String mFirstChapterId;
     private String mLastChapterId;
@@ -88,21 +89,26 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     @Override
     protected void initData () {
         mPresenter.getComicDetail(mComicId, mFirstChapterId, true);
+        mBinding.loading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void getComicDetailSuccess (ComicDetail comicDetail, boolean isLoadNext) {
         mComicDetailAdapter.updateData(comicDetail, isLoadNext);
+        if(mFailView != null) {
+            mFailView.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void getComicDetailFinish () {
-        //TODO
+        mBinding.loading.setVisibility(View.GONE);
     }
 
     @Override
     public void getComicDetailFailure (Throwable t) {
         showErrorMsg(t);
+        showFailView();
     }
 
     @Override
@@ -135,5 +141,20 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     @Override
     public void getNextChapterFinish () {
         showMessage(R.string.load_chapter_finish);
+    }
+
+    private void showFailView () {
+        if(mFailView == null) {
+            mFailView = mBinding.failViewStub.getViewStub().inflate();
+        }
+        mFailView.setVisibility(View.VISIBLE);
+        View retryView = mFailView.findViewById(R.id.retry);
+        retryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                mFailView.setVisibility(View.GONE);
+                initData();
+            }
+        });
     }
 }

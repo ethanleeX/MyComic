@@ -107,5 +107,19 @@
             android:src="@drawable/ic_favorite"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|end" />
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:mpb_indeterminateTint="@color/loading_indeterminate_tint"
+            style="@style/Widget.MaterialProgressBar.ProgressBar" />
+        <ViewStub
+            android:id="@+id/fail_view_stub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/fail_view" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>

@@ -55,6 +55,7 @@ public class ComicIntroductionPresenter extends BasePresenter<ComicIntroductionC
                                        @Override
                                        public void accept (Throwable throwable) throws Exception {
                                            mView.loadDataFailure(throwable);
+                                           mView.loadDataFinish();
                                        }
                                    }, new Action() {
                                        @Override

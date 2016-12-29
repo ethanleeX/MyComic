@@ -19,6 +19,8 @@
     <dimen name="elevation_appbar">4dp</dimen>
     <dimen name="elevation_card">2dp</dimen>
     <dimen name="elevation_switch">1dp</dimen>
+    <dimen name="elevation_fail_view">10dp</dimen>
+    <dimen name="elevation_progress_bar">12dp</dimen>
     <!--text size-->
     <dimen name="text_small">12sp</dimen>
     <dimen name="text_medium">14sp</dimen>

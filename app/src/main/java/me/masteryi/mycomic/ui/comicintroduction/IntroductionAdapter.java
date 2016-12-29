@@ -103,8 +103,8 @@ class IntroductionAdapter extends BaseAdapter {
             mBinding.textFullText.post(new Runnable() {
                 @Override
                 public void run () {
-                    mBinding.collapse.setVisibility(
-                        mBinding.textFullText.getLineCount() > 2 ? View.VISIBLE : View.GONE);
+                    //mBinding.collapse.setVisibility(
+                    //    mBinding.textFullText.getLineCount() > 2 ? View.VISIBLE : View.GONE);
                     mBinding.textFullText.setVisibility(isCollapse ? View.GONE : View.VISIBLE);
                     mBinding.textCollapse.setVisibility(isCollapse ? View.VISIBLE : View.GONE);
                 }

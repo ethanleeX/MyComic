@@ -56,7 +56,7 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.View>
                                        @Override
                                        public void accept (Throwable throwable) throws Exception {
                                            {
-                                               mView.loadDataFail(throwable);
+                                               mView.loadDataFailure(throwable);
                                                mView.loadDataFinish();
                                            }
                                        }

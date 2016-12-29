@@ -13,7 +13,7 @@ import me.masteryi.mycomic.beans.RecommendComic;
 
 public interface RecommendContract {
     interface View extends IBaseView {
-        void loadDataFail (Throwable t);
+        void loadDataFailure (Throwable t);
 
         void loadDataSuccess (List<RecommendComic> recommendComics);
 
