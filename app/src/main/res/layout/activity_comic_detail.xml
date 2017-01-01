@@ -13,44 +13,44 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical" />
         <LinearLayout
+            android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="@color/mask"
-            android:padding="@dimen/margin_micro">
+            android:paddingBottom="@dimen/margin_micro"
+            android:paddingLeft="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_micro">
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_small"
-                tools:text="第1话" />
+                android:textSize="@dimen/text_small" />
             <TextView
                 android:id="@+id/page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_micro"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_small"
-                tools:text="1/23" />
+                android:textSize="@dimen/text_small" />
             <TextView
                 android:id="@+id/network_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/text_small"
+                android:layout_marginLeft="@dimen/margin_micro"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_small"
-                tools:text="WIFI" />
+                android:textSize="@dimen/text_small" />
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/text_small"
+                android:layout_marginLeft="@dimen/margin_micro"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_small"
-                tools:text="21:03" />
+                android:textSize="@dimen/text_small" />
         </LinearLayout>
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/loading"

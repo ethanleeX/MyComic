@@ -1,15 +1,30 @@
 package me.masteryi.mycomic.ui.comicdetail;
 
+import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
+import android.net.ConnectivityManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseActivity;
 import me.masteryi.mycomic.beans.ComicChapter;
 import me.masteryi.mycomic.beans.ComicDetail;
 import me.masteryi.mycomic.beans.ComicPageDetail;
+import me.masteryi.mycomic.broadcast.NetworkStateReceiver;
+import me.masteryi.mycomic.constant.MyEventAction;
 import me.masteryi.mycomic.databinding.ActivityComicDetailBinding;
+import me.masteryi.mycomic.utils.ActivityUtil;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * @author master.yi
@@ -23,6 +38,7 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     public static final String COMIC_ID = "comic_id";
     public static final String CHAPTER_ID = "chapter_id";
     public static final String TITLE = "title";
+
     private ActivityComicDetailBinding mBinding;
     private ComicDetailAdapter mComicDetailAdapter;
     private LinearLayoutManager mLayoutManager;
@@ -32,6 +48,10 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     private String mLastChapterId;
     private int mCurrentPage = -1;
     private String mTitle;
+    private boolean mIsFirstMove = true;
+    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private SimpleDateFormat mSdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+    private NetworkStateReceiver mNetworkStateReceiver;
 
     @Override
     protected void getExtraData () {
@@ -52,6 +72,8 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
         mBinding.comicDetailRecyclerView.setAdapter(mComicDetailAdapter);
         mLayoutManager = new LinearLayoutManager(this);
         mBinding.comicDetailRecyclerView.setLayoutManager(mLayoutManager);
+
+        mBinding.comicDetailRecyclerView.scrollTo(0, 100);
 
         mBinding.comicDetailRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -93,10 +115,35 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     }
 
     @Override
+    protected void onResume () {
+        super.onResume();
+        EventBus.getDefault().register(this);
+        registerNetworkStateReceiver();
+    }
+
+    @Override
+    protected void onPause () {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+        mCompositeDisposable.clear();
+        unregisterReceiver(mNetworkStateReceiver);
+    }
+
+    @Override
     public void getComicDetailSuccess (ComicDetail comicDetail, boolean isLoadNext) {
         mComicDetailAdapter.updateData(comicDetail, isLoadNext);
         if(mFailView != null) {
             mFailView.setVisibility(View.GONE);
+        }
+
+        if(mBinding.info.getVisibility() != View.VISIBLE) {
+            mBinding.info.setVisibility(View.VISIBLE);
+            initInfo();
         }
     }
 
@@ -156,5 +203,64 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
                 initData();
             }
         });
+    }
+
+    /**
+     * 设置定时更新时间 检查电量和网络状态变化
+     */
+    private void initInfo () {
+        //一秒钟更新一下时间
+        mCompositeDisposable.add(Flowable.interval(0, 1, TimeUnit.SECONDS)
+                                         .observeOn(AndroidSchedulers.mainThread())
+                                         .subscribe(new Consumer<Long>() {
+                                             @Override
+                                             public void accept (Long aLong) throws Exception {
+                                                 String time = mSdf.format(new Date());
+                                                 mBinding.time.setText(time);
+                                             }
+                                         }));
+        //设置网络状态信息
+        setNetWorkStateInfo();
+    }
+
+    /**
+     * 注册网络状态动态广播
+     */
+    private void registerNetworkStateReceiver () {
+        if(mNetworkStateReceiver == null) {
+            mNetworkStateReceiver = new NetworkStateReceiver();
+        }
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(mNetworkStateReceiver, intentFilter);
+    }
+
+    /**
+     * 网络状态改变
+     */
+    @Subscribe
+    public void onEvent (Object action) {
+        if(action.equals(MyEventAction.NETWORK_STATE_CHANGED)) {
+            setNetWorkStateInfo();
+        }
+    }
+
+    /**
+     * 设置网络状态信息
+     */
+    private void setNetWorkStateInfo () {
+        switch (ActivityUtil.getNetWorkState(this)) {
+            case ActivityUtil.NETWORK_OFFLINE:
+                mBinding.networkState.setText(R.string.network_type_offline);
+                break;
+            case ActivityUtil.NETWORK_MOBILE:
+                mBinding.networkState.setText(R.string.network_type_mobile);
+                break;
+            case ActivityUtil.NETWORK_WIFI:
+                mBinding.networkState.setText(R.string.network_type_wifi);
+                break;
+            default:
+                mBinding.networkState.setText(R.string.network_type_unknown);
+        }
     }
 }
