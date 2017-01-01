@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/comic_chapter_favorite_btn_enable_bg"
+        android:state_enabled="true" />
+    <item
+        android:drawable="@drawable/comic_chapter_favorite_btn__disable_bg"
+        android:state_enabled="false" />
+</selector>

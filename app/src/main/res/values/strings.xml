@@ -15,6 +15,8 @@
     <string name="hello_blank_fragment">Z乱码乱码</string>
     <string name="collect">收藏</string>
     <string name="read">开始阅读</string>
+    <string name="favorite">收藏</string>
+    <string name="already_favorite">已收藏</string>
     <string name="full_text">点击展开</string>
     <string name="collapse">点击收起</string>
     <string name="chapter_index">第%1$d话</string>

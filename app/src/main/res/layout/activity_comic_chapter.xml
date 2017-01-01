@@ -52,6 +52,7 @@
                         android:layout_marginBottom="@dimen/margin_medium"
                         android:layout_marginLeft="@dimen/margin_medium"
                         bind:imageUrl="@{cover}"
+                        fresco:roundedCornerRadius="6dp"
                         fresco:viewAspectRatio="0.7894" />
                     <TextView
                         android:id="@+id/author"
@@ -76,16 +77,35 @@
                         android:text="@{comicIntroductionDetail.lastUpdateTime}"
                         tools:text="更新于：2016-12-07"
                         style="@style/comic_chapter_title" />
-                    <TextView
-                        android:id="@+id/read"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/title_image_small"
                         android:layout_alignLeft="@+id/author"
-                        android:background="@color/background_gray"
-                        android:padding="@dimen/margin_micro"
-                        android:text="@string/read"
-                        android:textColor="@color/white" />
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/margin_medium">
+                        <TextView
+                            android:id="@+id/favorite"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/comic_chapter_favorite_btn_enable_bg"
+                            android:gravity="center"
+                            android:padding="6dp"
+                            android:text="@string/read"
+                            android:textColor="@color/white" />
+                        <TextView
+                            android:id="@+id/read"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_weight="1"
+                            android:background="@drawable/comic_chapter_favorite_btn_bg"
+                            android:gravity="center"
+                            android:padding="6dp"
+                            android:text="@string/favorite"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
                 </RelativeLayout>
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -99,14 +119,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_favorite"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end" />
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/loading"
             android:layout_width="wrap_content"
