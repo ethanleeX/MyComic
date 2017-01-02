@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.ui.bookshelf.BookshelfFragment;
 import me.masteryi.mycomic.ui.category.CategoryFragment;
-import me.masteryi.mycomic.ui.latestupdate.LatestUpdateFragment;
-import me.masteryi.mycomic.ui.range.RankFragment;
+import me.masteryi.mycomic.ui.recent.RecentFragment;
+import me.masteryi.mycomic.ui.range.RangeFragment;
 import me.masteryi.mycomic.ui.recommend.RecommendFragment;
 
 /**
@@ -33,13 +33,13 @@ public class MainViewPagerAdapter extends FragmentStatePagerAdapter {
                 fragment = new RecommendFragment();
                 break;
             case 1:
-                fragment = new LatestUpdateFragment();
+                fragment = new RecentFragment();
                 break;
             case 2:
                 fragment = new CategoryFragment();
                 break;
             case 3:
-                fragment = new RankFragment();
+                fragment = new RangeFragment();
                 break;
             case 4:
                 fragment = new BookshelfFragment();

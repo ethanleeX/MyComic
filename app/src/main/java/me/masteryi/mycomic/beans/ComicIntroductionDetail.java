@@ -11,7 +11,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ComicIntroductionDetail {
     private String mCoverImg;//封面图
-    private String mName;//作品名
+    private String mTitle;//作品名
     private String mAuthor;//作者
     private String mType;//类型
     private String mLastUpdateTime;//最后更新于
@@ -29,12 +29,12 @@ public class ComicIntroductionDetail {
         mCoverImg = coverImg;
     }
 
-    public String getName () {
-        return mName;
+    public String getTitle () {
+        return mTitle;
     }
 
-    public void setName (String name) {
-        mName = name;
+    public void setTitle (String title) {
+        mTitle = title;
     }
 
     public String getAuthor () {

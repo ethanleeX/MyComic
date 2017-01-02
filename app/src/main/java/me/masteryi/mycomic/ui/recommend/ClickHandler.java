@@ -12,17 +12,17 @@ import me.masteryi.mycomic.ui.comicintroduction.ComicIntroductionActivity;
  */
 
 public class ClickHandler {
-    Context mContext;
+    private Context mContext;
 
     ClickHandler (Context context) {
         mContext = context;
     }
 
     public void onItemClick (ComicCover comicCover) {
-        // TODO: 2016/12/10
+        // TODO: 2016/12/10 共享元素动画
         Intent intent = new Intent(mContext, ComicIntroductionActivity.class);
         intent.putExtra(ComicIntroductionActivity.URL, comicCover.getUrl());
-        intent.putExtra(ComicIntroductionActivity.NAME, comicCover.getName());
+        intent.putExtra(ComicIntroductionActivity.TITLE, comicCover.getTitle());
         intent.putExtra(ComicIntroductionActivity.COVER, comicCover.getCoverImg());
         mContext.startActivity(intent);
     }

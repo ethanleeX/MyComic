@@ -22,6 +22,14 @@ public interface ComicApi {
     Observable<String> getHome ();
 
     /**
+     * 更新
+     *
+     * @return
+     */
+    @GET("recent.html")
+    Observable<String> getRecent ();
+
+    /**
      * 分类
      *
      * @return
@@ -67,5 +75,15 @@ public interface ComicApi {
     @GET("act")
     Observable<String> getNextChapter (@Query("cb") String cb, @Query("bid") String comicId,
                                        @Query("cid") String chapterId);
+
+    /**
+     * 更新
+     *
+     * @return
+     */
+    @GET("act")
+    Observable<String> getRecentByPage (@Query("act") String act, @Query("page") int page,
+                                        @Query("catid") String catid, @Query("ajax") String ajax,
+                                        @Query("order") String order);
 }
 

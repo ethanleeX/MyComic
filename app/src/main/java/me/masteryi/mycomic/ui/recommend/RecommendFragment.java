@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
-import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseFragment;
 import me.masteryi.mycomic.beans.RecommendComic;
 import me.masteryi.mycomic.databinding.FragmentRecommendBinding;
@@ -20,7 +19,7 @@ import me.masteryi.mycomic.databinding.FragmentRecommendBinding;
  * @blog masteryi.me
  */
 public class RecommendFragment extends BaseFragment<RecommendPresenter>
-    implements RecommendContract.View {
+    implements RecommendContract.IView {
     private FragmentRecommendBinding mBinding;
     RecyclerView mRecommendRecyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -29,11 +28,6 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter>
 
     public RecommendFragment () {
         // Required empty public constructor
-    }
-
-    @Override
-    protected int getContentId () {
-        return R.layout.fragment_recommend;
     }
 
     @Override

@@ -34,7 +34,7 @@
                 app:imageUrl="@{comicCover.coverImg}"
                 fresco:viewAspectRatio="0.7894" />
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
@@ -43,7 +43,7 @@
                 android:paddingLeft="@dimen/margin_micro"
                 android:paddingRight="@dimen/margin_micro"
                 android:textSize="14sp"
-                tools:text="@{comicCover.name}" />
+                tools:text="@{comicCover.title}" />
             <TextView
                 android:id="@+id/latest_chapter"
                 android:layout_width="wrap_content"

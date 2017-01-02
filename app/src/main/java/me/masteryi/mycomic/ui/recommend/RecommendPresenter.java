@@ -21,10 +21,10 @@ import org.jsoup.select.Elements;
  * @blog masteryi.me
  */
 
-public class RecommendPresenter extends BasePresenter<RecommendContract.View>
-    implements RecommendContract.Presenter {
+public class RecommendPresenter extends BasePresenter<RecommendContract.IView>
+    implements RecommendContract.IPresenter {
 
-    public RecommendPresenter (RecommendContract.View recommendView) {
+    public RecommendPresenter (RecommendContract.IView recommendView) {
         super(recommendView);
     }
 

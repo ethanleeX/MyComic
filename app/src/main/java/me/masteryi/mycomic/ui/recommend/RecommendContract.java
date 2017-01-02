@@ -12,7 +12,7 @@ import me.masteryi.mycomic.beans.RecommendComic;
  */
 
 public interface RecommendContract {
-    interface View extends IBaseView {
+    interface IView extends IBaseView {
         void loadDataFailure (Throwable t);
 
         void loadDataSuccess (List<RecommendComic> recommendComics);
@@ -20,7 +20,7 @@ public interface RecommendContract {
         void loadDataFinish ();
     }
 
-    interface Presenter extends IBasePresenter {
+    interface IPresenter extends IBasePresenter {
         /**
          * 换一批
          *

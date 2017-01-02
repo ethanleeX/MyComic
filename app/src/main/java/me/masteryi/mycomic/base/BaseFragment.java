@@ -38,8 +38,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
         ActivityUtil.showToast(getContext(), t.getMessage());
     }
 
-    abstract protected int getContentId ();
-
     abstract protected View inflateView (LayoutInflater inflater, @Nullable ViewGroup container,
                                          @Nullable Bundle savedInstanceState);
 

@@ -21,13 +21,13 @@ import me.masteryi.mycomic.utils.BlurPostprocessor;
 public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroductionPresenter>
     implements ComicIntroductionContract.IView {
     public static final String URL = "url";
-    public static final String NAME = "name";
+    public static final String TITLE = "title";
     public static final String COVER = "cover";
 
     private ActivityComicChapterBinding mBinding;
     private IntroductionAdapter mIntroductionAdapter;
     private String mUrl;
-    private String mName;
+    private String mTitle;
     private String mCover;
     private View mFailView;
 
@@ -39,7 +39,7 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
     @Override
     protected void getExtraData () {
         mUrl = getIntent().getStringExtra(URL);
-        mName = getIntent().getStringExtra(NAME);
+        mTitle = getIntent().getStringExtra(TITLE);
         mCover = getIntent().getStringExtra(COVER);
     }
 
@@ -70,7 +70,7 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
 
         mBinding.titleImage.setController(draweeController);
 
-        mBinding.collapsingToolbar.setTitle(mName);
+        mBinding.collapsingToolbar.setTitle(mTitle);
         mBinding.appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged (AppBarLayout appBarLayout, int verticalOffset) {
@@ -111,7 +111,7 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
         if(mFailView != null) {
             mFailView.setVisibility(View.GONE);
         }
-        comicIntroductionDetail.setName(mName);
+        comicIntroductionDetail.setTitle(mTitle);
         mBinding.setComicIntroductionDetail(comicIntroductionDetail);
         mIntroductionAdapter.update(comicIntroductionDetail.getIntroduction(),
             comicIntroductionDetail.getChapters());

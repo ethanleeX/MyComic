@@ -1,5 +1,7 @@
 package me.masteryi.mycomic.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * @author master.yi
  * @date 2016/12/25
@@ -8,6 +10,7 @@ package me.masteryi.mycomic.beans;
  * 每页漫画信息
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ComicPageDetail {
     private String mImage;
     private Integer mPage;

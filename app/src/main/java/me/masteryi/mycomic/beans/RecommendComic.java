@@ -1,5 +1,6 @@
 package me.masteryi.mycomic.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 /**
@@ -10,6 +11,7 @@ import java.util.List;
  * 推荐漫画
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RecommendComic {
     private static final int CATE_TOP = 0;
     private static final int CATE_FINISHED = 1;

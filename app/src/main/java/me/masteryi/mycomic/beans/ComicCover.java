@@ -12,16 +12,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ComicCover {
     private String mCoverImg;//封面图
-    private String mName;//书名
+    private String mTitle;//书名
     private String mLatestChapter;//最新章节
     private String mUrl;//链接
+    private String mUpdateTime;//更新时间
+    private String mType;//类别
+    private String mAuthor;//作者
+    private String mState;//状态  连载中/完结
 
     public ComicCover () {
     }
 
     public ComicCover (String coverImg, String name, String latestChapter, String url) {
         mCoverImg = coverImg;
-        mName = name;
+        mTitle = name;
         mLatestChapter = latestChapter;
         mUrl = url;
     }
@@ -34,12 +38,12 @@ public class ComicCover {
         mCoverImg = coverImg;
     }
 
-    public String getName () {
-        return mName;
+    public String getTitle () {
+        return mTitle;
     }
 
-    public void setName (String name) {
-        mName = name;
+    public void setTitle (String title) {
+        mTitle = title;
     }
 
     public String getLatestChapter () {
@@ -58,4 +62,35 @@ public class ComicCover {
         mUrl = url;
     }
 
+    public String getUpdateTime () {
+        return mUpdateTime;
+    }
+
+    public void setUpdateTime (String updateTime) {
+        mUpdateTime = updateTime;
+    }
+
+    public String getType () {
+        return mType;
+    }
+
+    public void setType (String type) {
+        mType = type;
+    }
+
+    public String getAuthor () {
+        return mAuthor;
+    }
+
+    public void setAuthor (String author) {
+        mAuthor = author;
+    }
+
+    public String getState () {
+        return mState;
+    }
+
+    public void setState (String state) {
+        mState = state;
+    }
 }
