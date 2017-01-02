@@ -3,12 +3,12 @@ package me.masteryi.mycomic.ui.main;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.ui.bookshelf.BookshelfFragment;
 import me.masteryi.mycomic.ui.category.CategoryFragment;
-import me.masteryi.mycomic.ui.recent.RecentFragment;
 import me.masteryi.mycomic.ui.range.RangeFragment;
+import me.masteryi.mycomic.ui.recent.RecentFragment;
 import me.masteryi.mycomic.ui.recommend.RecommendFragment;
 
 /**
@@ -17,8 +17,8 @@ import me.masteryi.mycomic.ui.recommend.RecommendFragment;
  * @blog masteryi.me
  */
 
-public class MainViewPagerAdapter extends FragmentStatePagerAdapter {
-    String[] mTitles;
+public class MainViewPagerAdapter extends FragmentPagerAdapter {
+    private String[] mTitles;
 
     public MainViewPagerAdapter (Activity activity, FragmentManager fm) {
         super(fm);

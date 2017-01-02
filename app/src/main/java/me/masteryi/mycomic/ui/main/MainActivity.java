@@ -49,6 +49,7 @@ public class MainActivity extends BaseToolbarActivity {
     private void initViewPagerAdapter () {
         MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(this,
             getSupportFragmentManager());
+        mBinding.viewPager.setOffscreenPageLimit(mainViewPagerAdapter.getCount());
         mBinding.viewPager.setAdapter(mainViewPagerAdapter);
     }
 
