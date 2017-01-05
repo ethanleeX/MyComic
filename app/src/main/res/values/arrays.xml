@@ -7,4 +7,28 @@
         <item>风云榜</item>
         <item>书架</item>
     </array>
+    <array name="category_name">
+        <item>全部</item>
+        <item>少年热血</item>
+        <item>武侠格斗</item>
+        <item>科幻魔幻</item>
+        <item>竞技体育</item>
+        <item>爆笑喜剧</item>
+        <item>侦探推理</item>
+        <item>恐怖灵异</item>
+        <item>少女爱情</item>
+        <item>恋爱生活</item>
+    </array>
+    <array name="category_url">
+        <item>http://m.chuiyao.com/comic/quanbu/</item>
+        <item>http://m.chuiyao.com/comic/shaonianrexuemanhua/</item>
+        <item>http://m.chuiyao.com/comic/wuxiagedoumanhua/</item>
+        <item>http://m.chuiyao.com/comic/kehuanmohuanmanhua/</item>
+        <item>http://m.chuiyao.com/comic/jingjitiyumanhua/</item>
+        <item>http://m.chuiyao.com/comic/qingsonggaoxiaomanhua/</item>
+        <item>http://m.chuiyao.com/comic/zhentantuilimanhua/</item>
+        <item>http://m.chuiyao.com/comic/kongbulingyimanhua/</item>
+        <item>http://m.chuiyao.com/comic/shaonvlovemanhua/</item>
+        <item>http://m.chuiyao.com/comic/lianai/</item>
+    </array>
 </resources>

@@ -10,8 +10,11 @@ import android.view.View;
  */
 
 public abstract class ViewHolderBinder extends RecyclerView.ViewHolder {
+    protected View mItemView;
+
     public ViewHolderBinder (View itemView) {
         super(itemView);
+        mItemView = itemView;
     }
 
     public abstract void onBindViewHolder (int position);

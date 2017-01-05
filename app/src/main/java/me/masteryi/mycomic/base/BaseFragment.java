@@ -56,12 +56,16 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     @Override
     public void onResume () {
         super.onResume();
-        mPresenter.onSubscribe();
+        if(mPresenter != null) {
+            mPresenter.onSubscribe();
+        }
     }
 
     @Override
     public void onPause () {
         super.onPause();
-        mPresenter.unSubscribe();
+        if(mPresenter != null) {
+            mPresenter.unSubscribe();
+        }
     }
 }
