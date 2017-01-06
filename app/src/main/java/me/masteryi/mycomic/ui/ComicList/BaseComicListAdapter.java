@@ -63,6 +63,7 @@ public class BaseComicListAdapter extends BaseAdapter {
         public void onBindViewHolder (int position) {
             final ComicCover comicCover = mComicCovers.get(position);
             mItemBinding.setComicDetail(comicCover);
+            mItemBinding.executePendingBindings();
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

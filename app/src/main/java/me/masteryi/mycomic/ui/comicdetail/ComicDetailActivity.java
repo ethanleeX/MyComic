@@ -48,7 +48,6 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     private String mLastChapterId;
     private int mCurrentPage = -1;
     private String mTitle;
-    private boolean mIsFirstMove = true;
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private SimpleDateFormat mSdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
     private NetworkStateReceiver mNetworkStateReceiver;
@@ -141,10 +140,7 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
             mFailView.setVisibility(View.GONE);
         }
 
-        if(mBinding.info.getVisibility() != View.VISIBLE) {
-            mBinding.info.setVisibility(View.VISIBLE);
-            initInfo();
-        }
+        initInfo();
     }
 
     @Override
