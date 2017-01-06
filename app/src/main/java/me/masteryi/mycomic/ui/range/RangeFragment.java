@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import me.masteryi.mycomic.databinding.FragmentRangeBinding;
-import me.masteryi.mycomic.ui.BaseComicList.BaseComicListFragment;
+import me.masteryi.mycomic.ui.ComicList.BaseComicListFragment;
 
 public class RangeFragment extends BaseComicListFragment<RangePresenter> {
     private static final String ORDER = "4";

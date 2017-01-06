@@ -1,6 +1,7 @@
 package me.masteryi.mycomic.ui.category;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import me.masteryi.mycomic.base.BaseAdapter;
 import me.masteryi.mycomic.base.ViewHolderBinder;
 import me.masteryi.mycomic.beans.Category;
 import me.masteryi.mycomic.databinding.CategoryItemBinding;
+import me.masteryi.mycomic.ui.ComicList.ComicListActivity;
+import me.masteryi.mycomic.ui.ComicList.ComicListFragment;
 
 /**
  * @author master.yi
@@ -45,17 +48,20 @@ public class CategoryAdapter extends BaseAdapter {
         }
 
         @Override
-        public void onBindViewHolder (int position) {
+        public void onBindViewHolder (final int position) {
             mItemBinding.setCategory(mCategories.get(position));
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick (View v) {
-                    // TODO: 2017/1/4 跳转到列表页
+                    Intent intent = new Intent(mContext, ComicListActivity.class);
+                    intent.putExtra(ComicListFragment.URL, mCategories.get(position).getUrl());
+                    intent.putExtra(ComicListActivity.NAME, mCategories.get(position).getName());
+                    mContext.startActivity(intent);
                 }
             });
 
             Uri uri = Uri.parse(
-                "res://" + mContext.getPackageName() + "/" + mCategories.get(position).getResId());
+                "res:///" + mCategories.get(position).getResId());
             mItemBinding.image.setImageURI(uri);
         }
     }

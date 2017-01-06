@@ -26,9 +26,10 @@
         <activity android:name=".ui.comicdetail.ComicDetailActivity">
         </activity>
 
-        <receiver
-            android:name=".broadcast.NetworkStateReceiver" />
-        <receiver
-            android:name=".broadcast.BatteryStateReceiver" />
+        <receiver android:name=".broadcast.NetworkStateReceiver" />
+        <receiver android:name=".broadcast.BatteryStateReceiver" />
+
+        <activity android:name=".ui.ComicList.ComicListActivity">
+        </activity>
     </application>
 </manifest>

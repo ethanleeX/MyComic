@@ -17,11 +17,21 @@ import me.masteryi.mycomic.utils.ActivityUtil;
 public abstract class BaseFragment<T extends IBasePresenter> extends Fragment implements IBaseView {
     protected T mPresenter;
 
+    @Override
+    public void onCreate (@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getExtra(getArguments());
+    }
+
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
         return inflateView(inflater, container, savedInstanceState);
+    }
+
+    protected void getExtra (Bundle bundle) {
+
     }
 
     @Override

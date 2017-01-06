@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.ui.BaseComicList;
+package me.masteryi.mycomic.ui.ComicList;
 
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -41,7 +41,7 @@ public abstract class BaseComicListFragment<P extends BaseComicListPresenter>
             @Override
             public void onRefresh () {
                 mPage = 1;
-                mPresenter.getComic();
+                getComic();
             }
         });
 
@@ -69,7 +69,7 @@ public abstract class BaseComicListFragment<P extends BaseComicListPresenter>
 
     @Override
     protected void initData () {
-        mPresenter.getComic();
+        getComic();
     }
 
     protected abstract String getOrder ();
@@ -99,6 +99,10 @@ public abstract class BaseComicListFragment<P extends BaseComicListPresenter>
     @Override
     public void onGetDataByPageFailure (Throwable t) {
         showErrorMsg(t);
+    }
+
+    protected void getComic () {
+        mPresenter.getComic();
     }
 }
 

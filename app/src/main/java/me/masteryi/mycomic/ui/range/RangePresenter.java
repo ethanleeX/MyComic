@@ -7,8 +7,8 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 import me.masteryi.mycomic.beans.ComicCover;
-import me.masteryi.mycomic.ui.BaseComicList.BaseComicListContract;
-import me.masteryi.mycomic.ui.BaseComicList.BaseComicListPresenter;
+import me.masteryi.mycomic.ui.ComicList.BaseComicListContract;
+import me.masteryi.mycomic.ui.ComicList.BaseComicListPresenter;
 
 /**
  * @author master.yi

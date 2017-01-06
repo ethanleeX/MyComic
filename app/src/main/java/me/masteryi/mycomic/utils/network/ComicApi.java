@@ -77,7 +77,7 @@ public interface ComicApi {
                                        @Query("cid") String chapterId);
 
     /**
-     * 更新
+     * 下一页数据
      *
      * @return
      */
@@ -85,5 +85,8 @@ public interface ComicApi {
     Observable<String> getRecentByPage (@Query("act") String act, @Query("page") int page,
                                         @Query("catid") String catid, @Query("ajax") String ajax,
                                         @Query("order") String order);
+
+    @GET
+    Observable<String> getComicList (@Url String url);
 }
 

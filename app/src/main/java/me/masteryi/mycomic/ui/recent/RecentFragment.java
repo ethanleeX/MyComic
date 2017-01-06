@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import me.masteryi.mycomic.databinding.FragmentLatestUpdateBinding;
-import me.masteryi.mycomic.ui.BaseComicList.BaseComicListFragment;
+import me.masteryi.mycomic.ui.ComicList.BaseComicListFragment;
 
 /**
  * 最近更新

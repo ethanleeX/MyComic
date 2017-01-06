@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.ui.BaseComicList;
+package me.masteryi.mycomic.ui.ComicList;
 
 import java.util.List;
 import me.masteryi.mycomic.base.IBasePresenter;
@@ -30,5 +30,7 @@ public class BaseComicListContract {
         void getComicByPage (int page, String order);
 
         void getComic ();
+
+        void getComic (String url);
     }
 }

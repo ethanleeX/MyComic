@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.ui.BaseComicList;
+package me.masteryi.mycomic.ui.ComicList;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.orhanobut.logger.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import me.masteryi.mycomic.R;
@@ -71,6 +72,7 @@ public class BaseComicListAdapter extends BaseAdapter {
                     intent.putExtra(ComicIntroductionActivity.TITLE, comicCover.getTitle());
                     intent.putExtra(ComicIntroductionActivity.COVER, comicCover.getCoverImg());
                     mContext.startActivity(intent);
+                    Logger.d("comic url:" + comicCover.getUrl());
                 }
             });
         }

@@ -1,4 +1,4 @@
-package me.masteryi.mycomic.ui.BaseComicList;
+package me.masteryi.mycomic.ui.ComicList;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
@@ -25,6 +25,16 @@ public abstract class BaseComicListPresenter extends BasePresenter<BaseComicList
 
     public BaseComicListPresenter (BaseComicListContract.IView view) {
         super(view);
+    }
+
+    @Override
+    public void getComic () {
+
+    }
+
+    @Override
+    public void getComic (String url) {
+
     }
 
     /**
