@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import me.masteryi.mycomic.base.BasePresenter;
-import me.masteryi.mycomic.beans.ComicChapter;
-import me.masteryi.mycomic.beans.ComicDetail;
+import me.masteryi.mycomic.beans.NextChapterInfo;
+import me.masteryi.mycomic.beans.ComicContent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -34,18 +34,18 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
         mSubscription.add(mComicApi.getComicDetail(comicId, chapterId)
                                    .subscribeOn(Schedulers.io())
                                    .observeOn(Schedulers.computation())
-                                   .map(new Function<String, ComicDetail>() {
+                                   .map(new Function<String, ComicContent>() {
                                        @Override
-                                       public ComicDetail apply (String s) throws Exception {
+                                       public ComicContent apply (String s) throws Exception {
                                            return getComicDetail(s);
                                        }
                                    })
                                    .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(new Consumer<ComicDetail>() {
+                                   .subscribe(new Consumer<ComicContent>() {
                                        @Override
-                                       public void accept (ComicDetail comicDetail)
+                                       public void accept (ComicContent comicContent)
                                            throws Exception {
-                                           mView.getComicDetailSuccess(comicDetail, isLoadNext);
+                                           mView.getComicDetailSuccess(comicContent, isLoadNext);
                                        }
                                    }, new Consumer<Throwable>() {
                                        @Override
@@ -65,18 +65,18 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
         mSubscription.add(mComicApi.getNextChapter("jsonp1", comicId, chapterId)
                                    .subscribeOn(Schedulers.io())
                                    .observeOn(Schedulers.computation())
-                                   .map(new Function<String, ComicChapter>() {
+                                   .map(new Function<String, NextChapterInfo>() {
                                        @Override
-                                       public ComicChapter apply (String s) throws Exception {
+                                       public NextChapterInfo apply (String s) throws Exception {
                                            String json = s.substring(7, s.length() - 1);
                                            ObjectMapper objectMapper = new ObjectMapper();
-                                           return objectMapper.readValue(json, ComicChapter.class);
+                                           return objectMapper.readValue(json, NextChapterInfo.class);
                                        }
                                    })
                                    .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(new Consumer<ComicChapter>() {
+                                   .subscribe(new Consumer<NextChapterInfo>() {
                                        @Override
-                                       public void accept (ComicChapter comicNextChapter)
+                                       public void accept (NextChapterInfo comicNextChapter)
                                            throws Exception {
                                            mView.getNextChapterSuccess(comicNextChapter, isNext);
                                        }
@@ -93,7 +93,7 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
                                    }));
     }
 
-    private ComicDetail getComicDetail (String html) throws IOException {
+    private ComicContent getComicDetail (String html) throws IOException {
         Document document = Jsoup.parse(html);
         Element body = document.body();
         //获取章节标题
@@ -104,9 +104,9 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
         for(Element element : scripts) {
             String text = element.html();
             if(text.contains("IMH.reader")) {
-                ComicDetail comicDetail = parseScriptText(text);
-                comicDetail.setTitle(title);
-                return comicDetail;
+                ComicContent comicContent = parseScriptText(text);
+                comicContent.setTitle(title);
+                return comicContent;
             }
         }
 
@@ -117,8 +117,8 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
      * @param text
      * @return
      */
-    private ComicDetail parseScriptText (String text) throws IOException {
-        ComicDetail comicDetail = new ComicDetail();
+    private ComicContent parseScriptText (String text) throws IOException {
+        ComicContent comicContent = new ComicContent();
         // TODO: 2016/12/24  重写正则
         String p1 = "count: parseInt\\('(\\d+)'\\)";
         String p2 = "images: \\$\\.parseJSON\\('(.+)'\\)";
@@ -126,15 +126,15 @@ public class ComicDetailPresenter extends BasePresenter<ComicDetailContract.IVie
         Pattern pattern1 = Pattern.compile(p1);
         Matcher matcher1 = pattern1.matcher(text);
         if(matcher1.find()) {
-            comicDetail.setPageCount(Integer.valueOf(matcher1.group(1)));
+            comicContent.setPageCount(Integer.valueOf(matcher1.group(1)));
         }
 
         Pattern pattern2 = Pattern.compile(p2);
         Matcher matcher2 = pattern2.matcher(text);
         if(matcher2.find()) {
             ObjectMapper mapper = new ObjectMapper();
-            comicDetail.setImages(mapper.readValue(matcher2.group(1), String[].class));
+            comicContent.setImages(mapper.readValue(matcher2.group(1), String[].class));
         }
-        return comicDetail;
+        return comicContent;
     }
 }

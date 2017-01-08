@@ -16,10 +16,11 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseActivity;
-import me.masteryi.mycomic.beans.ComicChapter;
-import me.masteryi.mycomic.beans.ComicDetail;
+import me.masteryi.mycomic.beans.NextChapterInfo;
+import me.masteryi.mycomic.beans.ComicContent;
 import me.masteryi.mycomic.beans.ComicPageDetail;
 import me.masteryi.mycomic.broadcast.NetworkStateReceiver;
+import me.masteryi.mycomic.constant.IntentExtraKey;
 import me.masteryi.mycomic.constant.MyEventAction;
 import me.masteryi.mycomic.databinding.ActivityComicDetailBinding;
 import me.masteryi.mycomic.utils.ActivityUtil;
@@ -27,18 +28,14 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
+ * 漫画详情页
+ *
  * @author master.yi
  * @date 2016/11/20
  * @blog masteryi.me
- *
- * 漫画详情页
  */
 public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     implements ComicDetailContract.IView {
-    public static final String COMIC_ID = "comic_id";
-    public static final String CHAPTER_ID = "chapter_id";
-    public static final String TITLE = "title";
-
     private ActivityComicDetailBinding mBinding;
     private ComicDetailAdapter mComicDetailAdapter;
     private LinearLayoutManager mLayoutManager;
@@ -54,10 +51,10 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
 
     @Override
     protected void getExtraData () {
-        mComicId = getIntent().getStringExtra(COMIC_ID);
-        mFirstChapterId = getIntent().getStringExtra(CHAPTER_ID);
-        mLastChapterId = getIntent().getStringExtra(CHAPTER_ID);
-        mTitle = getIntent().getStringExtra(TITLE);
+        mComicId = getIntent().getStringExtra(IntentExtraKey.COMIC_ID);
+        mFirstChapterId = getIntent().getStringExtra(IntentExtraKey.CHAPTER_ID);
+        mLastChapterId = getIntent().getStringExtra(IntentExtraKey.CHAPTER_ID);
+        mTitle = getIntent().getStringExtra(IntentExtraKey.TITLE);
     }
 
     @Override
@@ -134,8 +131,8 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     }
 
     @Override
-    public void getComicDetailSuccess (ComicDetail comicDetail, boolean isLoadNext) {
-        mComicDetailAdapter.updateData(comicDetail, isLoadNext);
+    public void getComicDetailSuccess (ComicContent comicContent, boolean isLoadNext) {
+        mComicDetailAdapter.updateData(comicContent, isLoadNext);
         if(mFailView != null) {
             mFailView.setVisibility(View.GONE);
         }
@@ -155,7 +152,7 @@ public class ComicDetailActivity extends BaseActivity<ComicDetailPresenter>
     }
 
     @Override
-    public void getNextChapterSuccess (ComicChapter nextChapter, boolean isNext) {
+    public void getNextChapterSuccess (NextChapterInfo nextChapter, boolean isNext) {
         //加载下一章
         if(isNext) {
             if(nextChapter.getNextId().equals("0")) {

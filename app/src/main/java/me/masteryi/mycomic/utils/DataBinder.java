@@ -16,3 +16,4 @@ public class DataBinder {
         view.setImageURI(url);
     }
 }
+

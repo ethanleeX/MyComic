@@ -2,7 +2,7 @@ package me.masteryi.mycomic.ui.comicintroduction;
 
 import me.masteryi.mycomic.base.IBasePresenter;
 import me.masteryi.mycomic.base.IBaseView;
-import me.masteryi.mycomic.beans.ComicIntroductionDetail;
+import me.masteryi.mycomic.beans.ComicIntroduction;
 
 /**
  * @author master.yi
@@ -12,7 +12,7 @@ import me.masteryi.mycomic.beans.ComicIntroductionDetail;
 
 class ComicIntroductionContract {
     interface IView extends IBaseView {
-        void loadDataSuccess (ComicIntroductionDetail comicIntroductionDetail);
+        void loadDataSuccess (ComicIntroduction comicIntroduction);
 
         void loadDataFinish ();
 

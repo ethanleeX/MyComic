@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 漫画详情页
+ *
  * @author master.yi
  * @date 2016/12/18
  * @blog masteryi.me
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ComicDetail {
+public class ComicContent {
     @JsonIgnore
     private Integer mPageCount;
     @JsonIgnore
@@ -22,7 +24,7 @@ public class ComicDetail {
     @JsonIgnore
     private List<ComicPageDetail> mComicPageDetails;
 
-    public ComicDetail () {
+    public ComicContent () {
     }
 
     public Integer getPageCount () {

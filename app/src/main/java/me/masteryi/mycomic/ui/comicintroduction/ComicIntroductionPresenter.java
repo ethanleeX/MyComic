@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import me.masteryi.mycomic.base.BasePresenter;
 import me.masteryi.mycomic.beans.Chapter;
-import me.masteryi.mycomic.beans.ComicIntroductionDetail;
+import me.masteryi.mycomic.beans.ComicIntroduction;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -36,20 +36,18 @@ public class ComicIntroductionPresenter extends BasePresenter<ComicIntroductionC
         mSubscription.add(mComicApi.getComicChapter(url)
                                    .subscribeOn(Schedulers.io())
                                    .observeOn(Schedulers.computation())
-                                   .map(new Function<String, ComicIntroductionDetail>() {
+                                   .map(new Function<String, ComicIntroduction>() {
                                        @Override
-                                       public ComicIntroductionDetail apply (String s)
-                                           throws Exception {
+                                       public ComicIntroduction apply (String s) throws Exception {
                                            return parseHtml(s);
                                        }
                                    })
                                    .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(new Consumer<ComicIntroductionDetail>() {
+                                   .subscribe(new Consumer<ComicIntroduction>() {
                                        @Override
-                                       public void accept (
-                                           ComicIntroductionDetail comicIntroductionDetail)
+                                       public void accept (ComicIntroduction comicIntroduction)
                                            throws Exception {
-                                           mView.loadDataSuccess(comicIntroductionDetail);
+                                           mView.loadDataSuccess(comicIntroduction);
                                        }
                                    }, new Consumer<Throwable>() {
                                        @Override
@@ -65,19 +63,18 @@ public class ComicIntroductionPresenter extends BasePresenter<ComicIntroductionC
                                    }));
     }
 
-    private ComicIntroductionDetail parseHtml (String html) {
-        ComicIntroductionDetail comicIntroductionDetail = new ComicIntroductionDetail();
+    private ComicIntroduction parseHtml (String html) {
+        ComicIntroduction comicIntroduction = new ComicIntroduction();
         Document document = Jsoup.parse(html);
         Element body = document.body();
         Element bookDetail = body.getElementsByClass("book-detail").first();
         Element contList = bookDetail.getElementsByClass("book-detail").first();
         Elements details = contList.getElementsByTag("dl");
-        comicIntroductionDetail.setLastUpdateTime(details.get(1).child(1).text());
-        comicIntroductionDetail.setAuthor(details.get(2).child(1).text());
-        comicIntroductionDetail.setType(details.get(3).child(1).text());
+        comicIntroduction.setUpdateTime(details.get(1).child(1).text());
+        comicIntroduction.setAuthor(details.get(2).child(1).text());
+        comicIntroduction.setType(details.get(3).child(1).text());
         Element bookIntro = body.getElementById("bookIntro");
-        //// TODO: 2016/12/11 去<a>标签
-        comicIntroductionDetail.setIntroduction(bookIntro.text());
+        comicIntroduction.setIntroduction(bookIntro.text());
 
         Element chapterList = body.getElementById("chapterList");
         Elements chapterListElements = chapterList.child(0).getElementsByTag("li");
@@ -88,7 +85,7 @@ public class ComicIntroductionPresenter extends BasePresenter<ComicIntroductionC
             chapter.setUrl(element.child(0).attr("href"));
             chapters.add(chapter);
         }
-        comicIntroductionDetail.setChapters(chapters);
-        return comicIntroductionDetail;
+        comicIntroduction.setChapters(chapters);
+        return comicIntroduction;
     }
 }

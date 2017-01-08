@@ -3,6 +3,8 @@ package me.masteryi.mycomic.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
+ * 分类
+ *
  * @author master.yi
  * @date 2017/1/4
  * @blog masteryi.me

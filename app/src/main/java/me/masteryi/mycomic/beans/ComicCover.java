@@ -3,11 +3,11 @@ package me.masteryi.mycomic.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
+ * 漫画封面
+ *
  * @author master.yi
  * @date 2016/11/28
  * @blog masteryi.me
- *
- * 漫画封面
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ComicCover {

@@ -2,8 +2,8 @@ package me.masteryi.mycomic.ui.comicdetail;
 
 import me.masteryi.mycomic.base.IBasePresenter;
 import me.masteryi.mycomic.base.IBaseView;
-import me.masteryi.mycomic.beans.ComicChapter;
-import me.masteryi.mycomic.beans.ComicDetail;
+import me.masteryi.mycomic.beans.NextChapterInfo;
+import me.masteryi.mycomic.beans.ComicContent;
 
 /**
  * @author master.yi
@@ -13,13 +13,13 @@ import me.masteryi.mycomic.beans.ComicDetail;
 
 public class ComicDetailContract {
     interface IView extends IBaseView {
-        void getComicDetailSuccess (ComicDetail comicDetail, boolean isLoadNext);
+        void getComicDetailSuccess (ComicContent comicContent, boolean isLoadNext);
 
         void getComicDetailFinish ();
 
         void getComicDetailFailure (Throwable t);
 
-        void getNextChapterSuccess (ComicChapter pageCount, boolean isNext);
+        void getNextChapterSuccess (NextChapterInfo pageCount, boolean isNext);
 
         void getNextChapterFailure (Throwable t);
 

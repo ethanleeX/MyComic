@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="comicIntroductionDetail"
-            type="me.masteryi.mycomic.beans.ComicIntroductionDetail" />
+            name="comicIntroduction"
+            type="me.masteryi.mycomic.beans.ComicIntroduction" />
         <variable
             name="cover"
             type="String" />
@@ -60,21 +60,21 @@
                         android:layout_marginLeft="@dimen/margin_small"
                         android:layout_marginTop="24dp"
                         android:layout_toRightOf="@+id/title_image_small"
-                        android:text="@{comicIntroductionDetail.author}"
+                        android:text="@{comicIntroduction.author}"
                         tools:text="天蚕土豆"
                         style="@style/comic_chapter_title" />
                     <TextView
                         android:id="@+id/type"
                         android:layout_below="@+id/author"
                         android:layout_toRightOf="@+id/title_image_small"
-                        android:text="@{comicIntroductionDetail.type}"
+                        android:text="@{comicIntroduction.type}"
                         tools:text="武侠格斗"
                         style="@style/comic_chapter_title" />
                     <TextView
                         android:id="@+id/update_time"
                         android:layout_below="@+id/type"
                         android:layout_toRightOf="@+id/title_image_small"
-                        android:text="@{comicIntroductionDetail.lastUpdateTime}"
+                        android:text="@{comicIntroduction.updateTime}"
                         tools:text="更新于：2016-12-07"
                         style="@style/comic_chapter_title" />
                     <LinearLayout

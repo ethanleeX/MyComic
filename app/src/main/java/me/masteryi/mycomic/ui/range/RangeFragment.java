@@ -8,6 +8,13 @@ import android.view.ViewGroup;
 import me.masteryi.mycomic.databinding.FragmentRangeBinding;
 import me.masteryi.mycomic.ui.ComicList.BaseComicListFragment;
 
+/**
+ * 风云榜
+ *
+ * @author master.yi
+ * @date 2016/12/18
+ * @blog masteryi.me
+ */
 public class RangeFragment extends BaseComicListFragment<RangePresenter> {
     private static final String ORDER = "4";
     private FragmentRangeBinding mBinding;

@@ -15,6 +15,8 @@ import me.masteryi.mycomic.beans.Category;
 import me.masteryi.mycomic.databinding.FragmentCategoryBinding;
 
 /**
+ * 分类
+ *
  * @author master.yi
  * @date 2017/1/4
  * @blog masteryi.me

@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 /**
+ * 推荐漫画
+ *
  * @author master.yi
  * @date 2016/11/28
  * @blog masteryi.me
- *
- * 推荐漫画
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)

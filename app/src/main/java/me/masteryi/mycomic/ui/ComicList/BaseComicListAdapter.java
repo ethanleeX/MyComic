@@ -6,13 +6,13 @@ import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.orhanobut.logger.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseAdapter;
 import me.masteryi.mycomic.base.ViewHolderBinder;
 import me.masteryi.mycomic.beans.ComicCover;
+import me.masteryi.mycomic.constant.IntentExtraKey;
 import me.masteryi.mycomic.databinding.RecentComicDetailItemBinding;
 import me.masteryi.mycomic.ui.comicintroduction.ComicIntroductionActivity;
 
@@ -62,18 +62,17 @@ public class BaseComicListAdapter extends BaseAdapter {
         @Override
         public void onBindViewHolder (int position) {
             final ComicCover comicCover = mComicCovers.get(position);
-            mItemBinding.setComicDetail(comicCover);
+            mItemBinding.setComicCover(comicCover);
             mItemBinding.executePendingBindings();
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick (View v) {
                     Intent intent = new Intent(mContext, ComicIntroductionActivity.class);
-                    intent.putExtra(ComicIntroductionActivity.URL, comicCover.getUrl());
-                    intent.putExtra(ComicIntroductionActivity.TITLE, comicCover.getTitle());
-                    intent.putExtra(ComicIntroductionActivity.COVER, comicCover.getCoverImg());
+                    intent.putExtra(IntentExtraKey.URL, comicCover.getUrl());
+                    intent.putExtra(IntentExtraKey.TITLE, comicCover.getTitle());
+                    intent.putExtra(IntentExtraKey.COVER, comicCover.getCoverImg());
                     mContext.startActivity(intent);
-                    Logger.d("comic url:" + comicCover.getUrl());
                 }
             });
         }

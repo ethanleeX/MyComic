@@ -5,18 +5,23 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseToolbarActivity;
+import me.masteryi.mycomic.constant.IntentExtraKey;
 import me.masteryi.mycomic.databinding.ActivityComicListBinding;
 
+/**
+ * @author master.yi
+ * @date 2016/12/18
+ * @blog masteryi.me
+ */
 public class ComicListActivity extends BaseToolbarActivity {
-    public static final String NAME = "name";
     private ActivityComicListBinding mBinding;
     private String mUrl;
     private String mName;
 
     @Override
     protected void getExtraData () {
-        mUrl = getIntent().getStringExtra(ComicListFragment.URL);
-        mName = getIntent().getStringExtra(NAME);
+        mUrl = getIntent().getStringExtra(IntentExtraKey.URL);
+        mName = getIntent().getStringExtra(IntentExtraKey.NAME);
     }
 
     @Override

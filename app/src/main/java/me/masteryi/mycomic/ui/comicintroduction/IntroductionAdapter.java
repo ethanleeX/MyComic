@@ -15,6 +15,7 @@ import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseAdapter;
 import me.masteryi.mycomic.base.ViewHolderBinder;
 import me.masteryi.mycomic.beans.Chapter;
+import me.masteryi.mycomic.constant.IntentExtraKey;
 import me.masteryi.mycomic.ui.comicdetail.ComicDetailActivity;
 import me.masteryi.mycomic.databinding.ChapterItemBinding;
 import me.masteryi.mycomic.databinding.ChapterItemIntroductionBinding;
@@ -132,11 +133,10 @@ class IntroductionAdapter extends BaseAdapter {
                     Pattern pattern = Pattern.compile(p);
                     Matcher matcher = pattern.matcher(url);
                     if(matcher.find()) {
-                        intent.putExtra(ComicDetailActivity.COMIC_ID, matcher.group(1));
-                        intent.putExtra(ComicDetailActivity.CHAPTER_ID, matcher.group(2));
+                        intent.putExtra(IntentExtraKey.COMIC_ID, matcher.group(1));
+                        intent.putExtra(IntentExtraKey.CHAPTER_ID, matcher.group(2));
                     }
-                    intent.putExtra(ComicDetailActivity.TITLE,
-                        mChapters.get(position - 1).getTitle());
+                    intent.putExtra(IntentExtraKey.TITLE, mChapters.get(position - 1).getTitle());
                     mContext.startActivity(intent);
                 }
             });

@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * 保存上一章/下一章章节信息
+ *
  * @author master.yi
  * @date 2016/12/18
  * @blog masteryi.me
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ComicChapter {
+public class NextChapterInfo {
     /**
      * s : 1
      * p : 369596
@@ -35,7 +37,7 @@ public class ComicChapter {
     @JsonProperty("x")
     private String mTitle;
 
-    public ComicChapter () {
+    public NextChapterInfo () {
     }
 
     public String getPreviousId () {

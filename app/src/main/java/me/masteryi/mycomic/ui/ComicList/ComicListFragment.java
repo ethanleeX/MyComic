@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import me.masteryi.mycomic.R;
+import me.masteryi.mycomic.constant.IntentExtraKey;
 import me.masteryi.mycomic.databinding.FragmentComicListBinding;
 
 /**
@@ -17,7 +18,6 @@ import me.masteryi.mycomic.databinding.FragmentComicListBinding;
 
 public class ComicListFragment extends BaseComicListFragment<ComicListPresenter> {
     private static final String ORDER = "1";
-    public static final String URL = "url";
     private FragmentComicListBinding mBinding;
     private String mUrl;
 
@@ -27,14 +27,14 @@ public class ComicListFragment extends BaseComicListFragment<ComicListPresenter>
     public static ComicListFragment newInstance (String url) {
         ComicListFragment fragment = new ComicListFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(URL, url);
+        bundle.putString(IntentExtraKey.URL, url);
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     protected void getExtra (Bundle bundle) {
-        mUrl = bundle.getString(URL);
+        mUrl = bundle.getString(IntentExtraKey.URL);
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.List;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseAdapter;
 import me.masteryi.mycomic.base.ViewHolderBinder;
-import me.masteryi.mycomic.beans.ComicDetail;
+import me.masteryi.mycomic.beans.ComicContent;
 import me.masteryi.mycomic.beans.ComicPageDetail;
 import me.masteryi.mycomic.databinding.ComicDetailItemBinding;
 
@@ -42,16 +42,16 @@ public class ComicDetailAdapter extends BaseAdapter {
     /**
      * 增加上一章/下一章内容
      *
-     * @param comicDetail 漫画内容
+     * @param comicContent 漫画内容
      * @param isNextChapter true表示下一章 false表示下一章
      */
-    public void updateData (ComicDetail comicDetail, boolean isNextChapter) {
+    public void updateData (ComicContent comicContent, boolean isNextChapter) {
         if(isNextChapter) {
-            mComicPageDetails.addAll(comicDetail.getComicPageDetails());
-            notifyItemRangeInserted(mComicPageDetails.size(), comicDetail.getPageCount());
+            mComicPageDetails.addAll(comicContent.getComicPageDetails());
+            notifyItemRangeInserted(mComicPageDetails.size(), comicContent.getPageCount());
         } else {
-            mComicPageDetails.addAll(0, comicDetail.getComicPageDetails());
-            notifyItemRangeInserted(0, comicDetail.getPageCount());
+            mComicPageDetails.addAll(0, comicContent.getComicPageDetails());
+            notifyItemRangeInserted(0, comicContent.getPageCount());
         }
     }
 

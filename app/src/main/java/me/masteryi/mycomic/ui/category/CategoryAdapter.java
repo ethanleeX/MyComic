@@ -11,9 +11,9 @@ import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseAdapter;
 import me.masteryi.mycomic.base.ViewHolderBinder;
 import me.masteryi.mycomic.beans.Category;
+import me.masteryi.mycomic.constant.IntentExtraKey;
 import me.masteryi.mycomic.databinding.CategoryItemBinding;
 import me.masteryi.mycomic.ui.ComicList.ComicListActivity;
-import me.masteryi.mycomic.ui.ComicList.ComicListFragment;
 
 /**
  * @author master.yi
@@ -54,8 +54,8 @@ public class CategoryAdapter extends BaseAdapter {
                 @Override
                 public void onClick (View v) {
                     Intent intent = new Intent(mContext, ComicListActivity.class);
-                    intent.putExtra(ComicListFragment.URL, mCategories.get(position).getUrl());
-                    intent.putExtra(ComicListActivity.NAME, mCategories.get(position).getName());
+                    intent.putExtra(IntentExtraKey.URL, mCategories.get(position).getUrl());
+                    intent.putExtra(IntentExtraKey.NAME, mCategories.get(position).getName());
                     mContext.startActivity(intent);
                 }
             });

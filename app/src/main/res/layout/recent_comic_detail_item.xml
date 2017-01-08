@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="comicDetail"
+            name="comicCover"
             type="me.masteryi.mycomic.beans.ComicCover" />
         <variable
             name="clickHandler"
@@ -31,7 +29,7 @@
                     android:id="@+id/cover"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    bind:imageUrl="@{comicDetail.coverImg}"
+                    bind:imageUrl="@{comicCover.coverImg}"
                     fresco:roundedCornerRadius="4dp"
                     fresco:viewAspectRatio="0.75" />
                 <TextView
@@ -43,7 +41,7 @@
                     android:layout_alignRight="@+id/cover"
                     android:background="@color/mask"
                     android:gravity="center"
-                    android:text="@{comicDetail.state}"
+                    android:text="@{comicCover.state}"
                     android:textColor="@color/white" />
             </RelativeLayout>
             <LinearLayout
@@ -53,23 +51,23 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/title"
-                    android:text="@{comicDetail.title}"
+                    android:text="@{comicCover.title}"
                     style="@style/recent_comic_detail_title" />
                 <TextView
                     android:id="@+id/author"
-                    android:text="@{comicDetail.author}"
+                    android:text="@{comicCover.author}"
                     style="@style/recent_comic_detail_text" />
                 <TextView
                     android:id="@+id/type"
-                    android:text="@{comicDetail.type}"
+                    android:text="@{comicCover.type}"
                     style="@style/recent_comic_detail_text" />
                 <TextView
                     android:id="@+id/latest_chapter"
-                    android:text="@{comicDetail.latestChapter}"
+                    android:text="@{comicCover.latestChapter}"
                     style="@style/recent_comic_detail_text" />
                 <TextView
                     android:id="@+id/update_time"
-                    android:text="@{comicDetail.updateTime}"
+                    android:text="@{comicCover.updateTime}"
                     style="@style/recent_comic_detail_text" />
             </LinearLayout>
         </LinearLayout>

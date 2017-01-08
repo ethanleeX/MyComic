@@ -14,16 +14,20 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import me.masteryi.mycomic.R;
 import me.masteryi.mycomic.base.BaseToolbarActivity;
-import me.masteryi.mycomic.beans.ComicIntroductionDetail;
+import me.masteryi.mycomic.beans.ComicIntroduction;
+import me.masteryi.mycomic.constant.IntentExtraKey;
 import me.masteryi.mycomic.databinding.ActivityComicChapterBinding;
 import me.masteryi.mycomic.utils.BlurPostprocessor;
 
+/**
+ * 漫画介绍
+ *
+ * @author master.yi
+ * @date 2016/12/18
+ * @blog masteryi.me
+ */
 public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroductionPresenter>
     implements ComicIntroductionContract.IView {
-    public static final String URL = "url";
-    public static final String TITLE = "title";
-    public static final String COVER = "cover";
-
     private ActivityComicChapterBinding mBinding;
     private IntroductionAdapter mIntroductionAdapter;
     private String mUrl;
@@ -38,9 +42,9 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
 
     @Override
     protected void getExtraData () {
-        mUrl = getIntent().getStringExtra(URL);
-        mTitle = getIntent().getStringExtra(TITLE);
-        mCover = getIntent().getStringExtra(COVER);
+        mUrl = getIntent().getStringExtra(IntentExtraKey.URL);
+        mTitle = getIntent().getStringExtra(IntentExtraKey.TITLE);
+        mCover = getIntent().getStringExtra(IntentExtraKey.COVER);
     }
 
     @Override
@@ -107,14 +111,14 @@ public class ComicIntroductionActivity extends BaseToolbarActivity<ComicIntroduc
     }
 
     @Override
-    public void loadDataSuccess (ComicIntroductionDetail comicIntroductionDetail) {
+    public void loadDataSuccess (ComicIntroduction comicIntroduction) {
         if(mFailView != null) {
             mFailView.setVisibility(View.GONE);
         }
-        comicIntroductionDetail.setTitle(mTitle);
-        mBinding.setComicIntroductionDetail(comicIntroductionDetail);
-        mIntroductionAdapter.update(comicIntroductionDetail.getIntroduction(),
-            comicIntroductionDetail.getChapters());
+        comicIntroduction.setTitle(mTitle);
+        mBinding.setComicIntroduction(comicIntroduction);
+        mIntroductionAdapter.update(comicIntroduction.getIntroduction(),
+            comicIntroduction.getChapters());
     }
 
     @Override
