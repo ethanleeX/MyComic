@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
-        android:title="@string/home" />
+        android:id="@+id/my"
+        android:title="@string/my" />
+    <item
+        android:id="@+id/my_book"
+        android:title="@string/bookshelf" />
     <item
         android:id="@+id/theme"
         android:title="@string/theme" />

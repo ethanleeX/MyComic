@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import me.masteryi.mycomic.R;
-import me.masteryi.mycomic.ui.bookshelf.BookshelfFragment;
 import me.masteryi.mycomic.ui.category.CategoryFragment;
 import me.masteryi.mycomic.ui.range.RangeFragment;
 import me.masteryi.mycomic.ui.recent.RecentFragment;
@@ -40,9 +39,6 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
                 break;
             case 3:
                 fragment = new RangeFragment();
-                break;
-            case 4:
-                fragment = new BookshelfFragment();
                 break;
         }
         return fragment;

@@ -81,7 +81,7 @@ public class MainActivity extends BaseToolbarActivity {
                     {
                         //TODO
                         switch (item.getItemId()) {
-                            case R.id.home:
+                            case R.id.my_book:
                                 break;
                             case R.id.theme:
                                 break;

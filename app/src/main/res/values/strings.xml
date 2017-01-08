@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MyComic</string>
-    <string name="home">首页</string>
+    <string name="my">我的</string>
+    <string name="bookshelf">书架</string>
     <string name="theme">夜间模式</string>
     <string name="setting">设置</string>
     <string name="about">关于</string>
