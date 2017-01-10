@@ -33,8 +33,7 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.IView>
      *
      * @return
      */
-    @Override
-    public void initData () {
+    public void getRecommendList () {
         mSubscription.add(mComicApi.getHome()
                                    .subscribeOn(Schedulers.io())
                                    .observeOn(Schedulers.computation())

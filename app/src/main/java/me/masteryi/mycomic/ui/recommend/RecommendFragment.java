@@ -65,7 +65,7 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter>
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh () {
-                mPresenter.initData();
+                mPresenter.getRecommendList();
             }
         });
     }
@@ -73,6 +73,11 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter>
     @Override
     protected void initPresenter () {
         mPresenter = new RecommendPresenter(this);
+    }
+
+    @Override
+    protected void initData () {
+        mPresenter.getRecommendList();
     }
 
     @Override

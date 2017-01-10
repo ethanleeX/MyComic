@@ -28,10 +28,6 @@ public class ComicIntroductionPresenter extends BasePresenter<ComicIntroductionC
     }
 
     @Override
-    public void initData () {
-    }
-
-    @Override
     public void loadData (String url) {
         mSubscription.add(mComicApi.getComicChapter(url)
                                    .subscribeOn(Schedulers.io())
