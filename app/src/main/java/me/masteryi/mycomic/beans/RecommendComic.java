@@ -13,32 +13,37 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RecommendComic {
-    private static final int CATE_TOP = 0;
-    private static final int CATE_FINISHED = 1;
-    private static final int CATE_COLORFUL = 3;
-    private static final int CATE_SALE = 4;
+    private String mRecommendType;
+    private List<List<ComicCover>> mComicCovers;
+    private Integer mCurrentPos;
 
-    private String mTitle;
-    private List<ComicCover> mComicCovers;
-
-    public RecommendComic (String title, List<ComicCover> comicCovers) {
-        mTitle = title;
+    public RecommendComic (String recommendType, List<List<ComicCover>> comicCovers) {
+        mRecommendType = recommendType;
         mComicCovers = comicCovers;
+        mCurrentPos = 0;
     }
 
-    public String getTitle () {
-        return mTitle;
+    public String getRecommendType () {
+        return mRecommendType;
     }
 
-    public void setTitle (String title) {
-        mTitle = title;
+    public void setRecommendType (String recommendType) {
+        mRecommendType = recommendType;
     }
 
-    public List<ComicCover> getComicCovers () {
+    public List<List<ComicCover>> getComicCovers () {
         return mComicCovers;
     }
 
-    public void setComicCovers (List<ComicCover> comicCovers) {
+    public void setComicCovers (List<List<ComicCover>> comicCovers) {
         mComicCovers = comicCovers;
+    }
+
+    public Integer getCurrentPos () {
+        return mCurrentPos;
+    }
+
+    public void setCurrentPos (Integer currentPos) {
+        mCurrentPos = currentPos;
     }
 }

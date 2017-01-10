@@ -3,7 +3,7 @@ package me.masteryi.mycomic.ui.recommend;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +20,14 @@ import me.masteryi.mycomic.databinding.FragmentRecommendBinding;
  */
 public class RecommendFragment extends BaseFragment<RecommendPresenter>
     implements RecommendContract.IView {
+    public static final int COVER_COUNT_PER_LIST = 6;
     private FragmentRecommendBinding mBinding;
     RecyclerView mRecommendRecyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
     private RecommendAdapter mRecommendAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
 
     public RecommendFragment () {
-        // Required empty public constructor
     }
 
     @Override
@@ -43,10 +43,17 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter>
         mSwipeRefreshLayout = mBinding.swipeRefreshLayout;
 
         mRecommendAdapter = new RecommendAdapter(getContext());
-        mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager = new GridLayoutManager(getContext(), RecommendAdapter.COVER_COUNT_ONE_LINE);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize (int position) {
+                return mRecommendAdapter.getItemViewType(position) == RecommendAdapter.TYPE_TITLE
+                    ? RecommendAdapter.COVER_COUNT_ONE_LINE : 1;
+            }
+        });
         mRecommendRecyclerView.setAdapter(mRecommendAdapter);
         mRecommendRecyclerView.setLayoutManager(mLayoutManager);
-
+        mRecommendRecyclerView.addItemDecoration(new RecommendItemDecoration(getContext()));
         //刚进入时刷新
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
@@ -75,7 +82,7 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter>
 
     @Override
     public void loadDataSuccess (List<RecommendComic> recommendComics) {
-        mRecommendAdapter.refreshData(recommendComics);
+        mRecommendAdapter.initData(recommendComics);
     }
 
     @Override

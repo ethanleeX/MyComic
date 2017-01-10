@@ -93,13 +93,20 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.IView>
      * @return
      */
     private RecommendComic getRecommendComic (Element element) {
-        List<ComicCover> list = new ArrayList<>(6);
+        List<List<ComicCover>> lists = new ArrayList<>(2);
         String title = element.child(0).child(0).text();
-        Elements li = element.child(1).child(0).child(0).getElementsByTag("li");
-        for(Element e : li) {
-            list.add(getComicCover(e));
+        lists.add(getCoverList(element.child(1).child(0).child(0).getElementsByTag("li")));
+        lists.add(getCoverList(element.child(1).child(0).child(1).getElementsByTag("li")));
+
+        return new RecommendComic(title, lists);
+    }
+
+    private List<ComicCover> getCoverList (Elements elements) {
+        List<ComicCover> covers = new ArrayList<>(6);
+        for(Element e : elements) {
+            covers.add(getComicCover(e));
         }
-        return new RecommendComic(title, list);
+        return covers.subList(0, RecommendFragment.COVER_COUNT_PER_LIST);
     }
 
     /**
