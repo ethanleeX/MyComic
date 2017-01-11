@@ -35,7 +35,6 @@ public class RecommendItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets (Rect outRect, View view, RecyclerView parent,
                                 RecyclerView.State state) {
-        Logger.d(parent.indexOfChild(view));
         switch (parent.getChildAdapterPosition(view) %
                 (RecommendFragment.COVER_COUNT_PER_LIST + 1)) {
             case 1:

@@ -1,5 +1,6 @@
 package me.masteryi.mycomic.utils.network;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.orhanobut.logger.Logger;
 import java.io.IOException;
@@ -24,22 +25,41 @@ public class ComicService {
         if(sInstance == null) {
             synchronized (ComicService.class) {
                 if(sInstance == null) {
+                    //OkHttpClient client = new OkHttpClient.Builder().addNetworkInterceptor(
+                    //    new Interceptor() {
+                    //        @Override
+                    //        public Response intercept (Chain chain) throws IOException {
+                    //            {
+                    //                Request request = chain.request();
+                    //                Response response = chain.proceed(request);
+                    //                String msg = response.request().method() +
+                    //                             " " + response.code() +
+                    //                             " " + response.message() +
+                    //                             " " + response.request().url();
+                    //                Logger.i(msg);
+                    //                return response;
+                    //            }
+                    //        }
+                    //    }).build();
                     OkHttpClient client = new OkHttpClient.Builder().addNetworkInterceptor(
-                        new Interceptor() {
-                            @Override
-                            public Response intercept (Chain chain) throws IOException {
-                                {
-                                    Request request = chain.request();
-                                    Response response = chain.proceed(request);
-                                    String msg = response.request().method() +
-                                                 " " + response.code() +
-                                                 " " + response.message() +
-                                                 " " + response.request().url();
-                                    Logger.i(msg);
-                                    return response;
-                                }
+                        new StethoInterceptor()).addNetworkInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept (Chain chain) throws IOException {
+                            {
+                                Request request = chain.request();
+                                Response response = chain.proceed(request);
+                                String msg = response.request().method() +
+                                             " " +
+                                             response.code() +
+                                             " " +
+                                             response.message() +
+                                             " " +
+                                             response.request().url();
+                                Logger.i(msg);
+                                return response;
                             }
-                        }).build();
+                        }
+                    }).build();
 
                     Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL)
                                                               .client(client)
